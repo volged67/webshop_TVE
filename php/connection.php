@@ -6,4 +6,6 @@ $password='';
 
 $con =new PDO($dsn,$username,$password);
 
+$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 ?>
