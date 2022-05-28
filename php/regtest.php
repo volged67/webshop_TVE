@@ -106,7 +106,7 @@ if(isset($_SESSION["eingelogt"])){
     </div>
   </nav>
         <!--Registrierung Form-->
-<form method="POST" action="regcheck.php" id="regForm" class="form-horizontal" role="form">
+<form method="POST" action="../PHPMailer/index.php" id="regForm" class="form-horizontal" role="form">
         <div class="container">
             <div class="row">
 
