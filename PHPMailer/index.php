@@ -76,18 +76,18 @@ function randomPW(){
       
      // ------DB Einstellungen-------
         //DB
-        include 'php/zugangsdaten.php';
+        include '../php/connection.php';
         //verbindung zur datenbank
-        $conn = new PDO("mysql:host=$servername;dbname=$datenbankname", $benutzername, $benutzerpassword);
+        //$conn = new PDO("mysql:host=$servername;dbname=$datenbankname", $benutzername, $benutzerpassword);
         //set the PDo error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
         
         //SQL
         $sqlNeuerBenutzer = "INSERT INTO wslogin (vorname,nachname,passwort,email,straße,ort,plz)
         VALUES(?,?,?,?,?,?,?)";
         // $bLoginSuccsess=true;
-        $stmt=$conn->prepare($sqlNeuerBenutzer);
+        $stmt=$con->prepare($sqlNeuerBenutzer);
         $stmt->execute([$sVorname,$snNachname,$sPasswortHash,$sEmail,$sStrasse,$sOrt,$sPlz]);
     
         //close connection
