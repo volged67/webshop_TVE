@@ -57,7 +57,7 @@ function randomPW(){
     $comb = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     $shfl = str_shuffle($comb);
     $pwd = substr($shfl,0,8);
-    $mail->Body = "Ihr Passwort: $pwd";
+    $mail->Body = "Ihr Passwort: $pwd ";
 //Add recipient
     $mail->addAddress($sEmail);
 //Finally send email

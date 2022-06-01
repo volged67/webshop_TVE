@@ -15,9 +15,6 @@
         <link href="node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
         <script src="node_modules/jquery/jquery.js"></script>
         <script type="text/javascript">
-
-
-
         </script>
            
     </head>
@@ -28,19 +25,19 @@
 //Navbar
 include 'navbar.php';
 
-session_start();
+//session_start();
 
 
-if(isset($_SESSION["eingelogt"])){
- if($_SESSION["eingelogt"]=1){
-   echo "<a href=logout.php><i class=fas fa-sign-out-alt></i> Logout</a>  ";
- }else{
-   echo "<a href=login.php><i class=fas fa-sign-out-alt></i> Login</a>  ";
- }
+//if(isset($_SESSION["eingelogt"])){
+ //if($_SESSION["eingelogt"]=1){
+   //echo "<a href=logout.php><i class=fas fa-sign-out-alt></i> Logout</a>  ";
+ //}else{
+   //echo "<a href=login.php><i class=fas fa-sign-out-alt></i> Login</a>  ";
+ //}
 
-}else{
- echo "<a href=login.php><i class=fas fa-sign-out-alt></i> Login</a>  ";
-}
+//}else{
+ //echo "<a href=login.php><i class=fas fa-sign-out-alt></i> Login</a>  ";
+//}
 ?>
         
         
