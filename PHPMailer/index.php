@@ -98,7 +98,7 @@ function randomPW(){
     
             
             // header( "refresh:0;url=login.html" ); 
-            header('Location: login.html');
+            header('Location: ../php/login.php');
         }else{
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $mail->ErrorInfo;
