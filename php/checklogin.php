@@ -45,7 +45,7 @@
 
         if($bLoginSuccess)
         {
-            header("Location: Startseite.html");
+            header("Location: Startseite.php");
         }
         else
         {
