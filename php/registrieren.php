@@ -11,7 +11,9 @@
 
 </head>
 <body>
-    
+    <?php
+    include'navbar.php';
+    ?>
 
     <div id="login">
         <h3 class="text-center text-white pt-5">Registrieren</h3>
@@ -20,39 +22,53 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="" method="post">
-                            <h3 class="text-center text-info">Registrieren</h3>
+                            <h3 class="text-center text-info">Registrieren</h3> 
 
                             <form action="?register=1" method="post">
+                            <form method="POST" action="../PHPMailer/index.php" id="regForm" class="form-horizontal" role="form">
+                            <div class="container">
+                                <div class="row">
                                 
                             <div class="form-group">
-                                <input type="radio" name="geschlecht" value="Mann">Mann<br>
-                                <input type="radio" name="geschlecht" value="Frau">Frau<br>
+                            <label for="name" class="text-info">Vorname</label>
+                            <input type="text" name="vorname" id="vorname" class="form-control" placeholder="Max">
                             </div>  
 
                             <div class="form-group">
-                                <label for="name" class="text-info">Passwort:</label><br>
-                                <input type="password" name="name" id="name" class="form-control">
+                                <label for="name" class="text-info">Nachname</label>
+                                <input type="text" name="nachname" id="nachname" class="form-control" placeholder="Mustermann">
                             </div>
-
-                            <div class="form-group">
-                                <label for="name" class="text-info">Passwort wiederholen:</label><br>
-                                <input type="password" name="name" id="name" class="form-control">
-                            </div>
-
+                            <br>
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="text-info">E-Mail</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="maxmustermann@gmail.com">
                             </div>
 
                             <div class="form-group">
-                                <input class="btn btn-primary"  type="submit" class="btn btn-primary" value="Abschicken">
+                                <label for="name" class="text-info">Straße</label>
+                                <input type="text" class="form-control" placeholder="Altburgstr.150">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name" class="text-info">Ort</label> 
+                                <input type="text" class="form-control" placeholder="Reutlingen">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name" class="text-info">PLZ</label>
+                                <input type="text" class="form-control" placeholder="72762">
+                            </div>
+
+
+                            <div class="form-group">
+                                <input class="btn btn-primary"  type="submit" class="btn btn-primary" value="Erstellen Sie Ihr Konto">
                             </div>  
                             
                             
 
                               
                             <div id="login-link" class="text-right">
-                                <a href="../php/login.php" class="text-info">zum Login</a>
+                             
                             </div>
                         </form>
                     </div>
