@@ -7,9 +7,9 @@
     {
         $sUsername=htmlspecialchars($_POST['email']);
     }
-    if(isset($_POST['passwort']))
+    if(isset($_POST['password']))
     {
-        $sPassword=htmlspecialchars($_POST['passwort']);
+        $sPassword=htmlspecialchars($_POST['password']);
     }
 
     if ($sUsername!=="" && $sPassword!=="")
@@ -23,7 +23,7 @@
 
         
 
-        $sql="SELECT*FROM user WHERE email='".$sUsername."'AND passwort='".$sPassword."'";
+        $sql="SELECT*FROM users WHERE email='".$sUsername."'AND password='".$sPassword."'";
 
    
         foreach($conn->query($sql) as $row)

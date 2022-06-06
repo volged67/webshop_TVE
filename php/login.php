@@ -22,7 +22,7 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="email" class="text-info">e-Mail</label><br>
-                                <input type="email" name="email" class="form-control">
+                                <input type="mail" name="email" class="form-control">
                             </div> 
                              <div class="form-group">
                                 <label for="password" class="text-info">Passwort:</label><br>
