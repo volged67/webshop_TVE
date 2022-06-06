@@ -1,52 +1,48 @@
-<?php 
-session_start();
+<!DOCTYPE html>
+<html lang="en">
 
-//DB Settings
-include 'dbsettings.php';
-
-//Verbindung zur Datenbank
-$db = new PDO($dsn,$username,$password);
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- 
-if(isset($_GET['login'])) {
-    $email = $_POST['email'];
-    $passwort = $_POST['passwort'];
-    
-    $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-    $result = $statement->execute(array('email' => $email));
-    $user = $statement->fetch();
-        
-    //Überprüfung des Passworts
-    if ($user !== false && password_verify($passwort, $user['passwort'])) {
-        $_SESSION['userid'] = $user['id'];
-        die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
-    } else {
-        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
-    }
-    
-}
-?>
-<!DOCTYPE html> 
-<html> 
 <head>
-  <title>Login</title>    
-</head> 
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+
+</head>
+
 <body>
- 
-<?php 
-if(isset($errorMessage)) {
-    echo $errorMessage;
-}
-?>
- 
-<form action="?login=1" method="post">
-E-Mail:<br>
-<input type="email" size="40" maxlength="250" name="email"><br><br>
- 
-Dein Passwort:<br>
-<input type="password" size="40"  maxlength="250" name="passwort"><br>
- 
-<input type="submit" value="Abschicken">
-</form> 
-</body>
+    <div id="login">
+        <h3 class="text-center text-white pt-5">Login form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="checklogin.php" method="post">
+                            <h3 class="text-center text-info">Login</h3>
+                            <div class="form-group">
+                                <label for="email" class="text-info">e-Mail</label><br>
+                                <input type="email" name="email" class="form-control">
+                            </div> 
+                             <div class="form-group">
+                                <label for="password" class="text-info">Passwort:</label><br>
+                                <input type="password" name="password" id="password" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="submit" value="Login" id="login" class="btn btn-primary">
+                            </div>    
+                                         
+                            <div id="register-link" class="text-right">
+                                <a href="registrierung.php" class="text-info">Registrieren</a>
+                            </div>
+                        </form>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </html>
