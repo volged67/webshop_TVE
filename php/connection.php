@@ -1,6 +1,6 @@
 <?php
 
-$dsn='mysql:dbname=webshop;host=localhost';
+$dsn='mysql:dbname=projekt;host=localhost';
 $username='root';
 $password='';
 

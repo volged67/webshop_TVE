@@ -1,5 +1,5 @@
 <?php
 $username="root";
 $password = "";
-$dsn="mysql:host=localhost;dbname=webshop;charset=utf8";
+$dsn="mysql:host=localhost;dbname=projekt;charset=utf8";
 ?>
