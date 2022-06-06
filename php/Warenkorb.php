@@ -11,7 +11,7 @@
 <body>
     <!-- Navigationsleiste -->
     <?php
-    include 'Navigationsleiste.php';
+    include 'navbar.php';
     ?>
     <!-- Tabelle mit Artikeln im Warenkorb -->
     <section class="h-100" style="background-color: #eee;">
