@@ -33,19 +33,19 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="name" class="text-info">Vorname</label> <br>
-                                            <input type="text" name="vorname" id="vorname" class="form-control" placeholder="Max"><br>
+                                            <input id="regVorname" type="text" name="vorname" id="vorname" class="form-control" placeholder="Max"><br>
                                         
                                             <label for="name" class="text-info">Nachname</label><br>
-                                            <input type="text" name="nachname" id="nachname" class="form-control" placeholder="Mustermann"><br>
+                                            <input id="regNachname" type="text" name="nachname" id="nachname" class="form-control" placeholder="Mustermann"><br>
                                                 <label for="exampleInputEmail1" class="text-info">E-Mail</label><br>
-                                                <input type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="maxmustermann@gmail.com"><br>
+                                                <input id="regEmail" type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="maxmustermann@gmail.com"><br>
                                                 <label for="name" class="text-info">Straße</label><br>
-                                                <input type="text" class="form-control" placeholder="Altburgstr.150"><br>
+                                                <input id="regStrasse" type="text" class="form-control" placeholder="Altburgstr.150"><br>
                                                 <label for="name" class="text-info">Ort</label><br>
-                                                <input type="text" class="form-control" placeholder="Reutlingen"><br>
+                                                <input id="regOrt" type="text" class="form-control" placeholder="Reutlingen"><br>
                                                 <label for="name" class="text-info">PLZ</label><br>
-                                                <input type="text" class="form-control" placeholder="72762"><br>
-                                                <input class="btn btn-primary" type="submit" class="btn btn-primary" value="Erstellen Sie Ihr Konto">
+                                                <input id="regPlz" type="text" class="form-control" placeholder="72762"><br>
+                                                <input id="regBtn"class="btn btn-primary" type="submit" class="btn btn-primary" value="Erstellen Sie Ihr Konto">
                                             </div>
                                             <div class="col">
 

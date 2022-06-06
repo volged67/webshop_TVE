@@ -112,7 +112,7 @@ function randomPW(){
     {
         $bLoginSuccsess=false;
          echo( ausgabe($e->getMessage()));
-         header( "refresh:3;url=registrierung.php" );
+         header( "refresh:3;url=registrieren.php" );
         /*
         echo"<script type=text/javascript>
         alert(".( ausgabe($e->getMessage())).")
