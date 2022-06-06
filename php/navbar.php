@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../php/Artikelseite2.php">
+          <a class="nav-link" href="../php/Artikelseite.php">
             <button type="button" class="btn btn-outline-primary">Artikel</button>
           </a>
         </li>

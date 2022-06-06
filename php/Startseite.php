@@ -27,12 +27,12 @@
 
 <!-- Navigationsleiste einfügen -->
  <?php
-    include 'Navigationsleiste.php';
+    include 'navbar.php';
     ?>
 
 <!-- Begrüßung (noch zu bearbeiten) -->
 <h1>Herzlich Willkommen</h1>
-        <p>Schön, dass du hier bist <b><?php echo $_SESSION['firstname']." ".$_SESSION['lastname']; ?></b></p>
+        <p>Schön, dass du hier bist <b><?php echo $_SESSION['vorname']." ".$_SESSION['nachname']; ?></b></p>
         <p>Du warst das letzte mal am ... eingeloggt. <b>
 
  
