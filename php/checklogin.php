@@ -23,7 +23,7 @@
 
         
 
-        $sql="SELECT*FROM users WHERE email='".$sUsername."'AND password='".$sPassword."'";
+        $sql="SELECT*FROM user WHERE email='".$sUsername."'AND password='".$sPassword."'";
 
    
         foreach($conn->query($sql) as $row)
@@ -31,8 +31,8 @@
             session_start();
 
             $_SESSION['id']=$row['id'];
-            $_SESSION['vorname']=$row['vorname'];
-            $_SESSION['nachname']=$row['nachname'];
+            $_SESSION['firstname']=$row['firstname'];
+            $_SESSION['lastname']=$row['lastname'];
             $_SESSION['email']=$row['email'];
             $_SESSION['login']=111;
             $_SESSION['time']=time();

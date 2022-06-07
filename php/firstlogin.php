@@ -9,13 +9,18 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+
+<?php
+    include 'navbar.php';
+?>
+
     <div id="login">
         <h3 class="text-center text-white pt-5">Login form</h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
+                        <form id="login-form" class="form" action="checkfirstlogin.php" method="post">
                             <h3 class="text-center text-info">Neues Passwort vergeben!</h3>
                             <br>
                             
@@ -25,17 +30,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Altes Passwort:</label><br>
-                                <input type="password" name="password" id="password" class="form-control">
+                                <input type="password" name="oldpassword" id="password" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label for="password" class="text-info">Neues Passwort:</label><br>
-                                <input type="password" name="password" id="password" class="form-control">
+                                <input type="password" name="newpassword" id="password" class="form-control">
                             </div>
                             
                             <div class="form-group">
                               
-                                <a href="../php/Startseite.php" class="btn btn-primary"  type="button">login </a>
+                            <input id="regBtn"class="btn btn-primary" type="submit" class="btn btn-primary" >
                             </div>    
                                          
                             <div id="register-link" class="text-right">

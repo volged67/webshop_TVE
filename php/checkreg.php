@@ -45,6 +45,7 @@ if(isset($_POST['email']))
 include "password.php";
 $genPassword=passGenerator(9);
 $sPassword=password_hash($genPassword,CRYPT_SHA512);
+$_SESSION['OldPassword']=$sPassword;
 
 
 
