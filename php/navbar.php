@@ -30,6 +30,16 @@
           </a>
         </li>
         <li class="nav-item">
+          <?php
+          if ($_SESSION['login']=111) {
+            include 'logoutbutton.php';
+          }
+          else {
+            include 'loginbutton.php';
+          }
+          ?>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="../php/Warenkorb.php">
             <button type="button" class="btn btn-outline-primary position-absolute">
               Warenkorb
@@ -41,7 +51,6 @@
           </a>
         </li>
         
-        </li>
       </ul>
     </div>
   </nav>

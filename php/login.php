@@ -43,7 +43,7 @@
                             </div>    
                             <!--Registrierungslink-->       
                             <div id="register-link" class="text-right">
-                                <a href="registrierung.php" class="text-info">Registrieren</a>
+                                <a href="registrieren.php" class="text-info">Registrieren</a>
                             </div>
                         </form>
 
