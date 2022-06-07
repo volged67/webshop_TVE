@@ -32,11 +32,11 @@ if(isset($_POST['email']))
 
     
 
-        //$sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".password_hash($sOldPassword,CRYPT_SHA512)."'";
+//$sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".password_hash($sOldPassword,CRYPT_SHA512)."'";
         $sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".$sOldPassword."'";
         
     
-
+//Daten aus der Tabelle rausziehen
         foreach($conn->query($sql) as $row)
         {
             $sUserID=$row['regid'];
@@ -47,7 +47,7 @@ if(isset($_POST['email']))
             $sCity=$row['city'];
         }
 
-        $sHashPassword=password_hash($sNewPassword,CRYPT_SHA512);
+            $sHashPassword=password_hash($sNewPassword,CRYPT_SHA512);
         $sql2 = "INSERT INTO user (firstname,lastname,street,plz,city,email,password) VALUES (?,?,?,?,?,?,?)";
         $stmt=$conn->prepare($sql2);
         $stmt->execute([$sFirstname,$sLastname,$sStreet,$sPLZ,$sCity,$sMail,$sHashPassword]);
