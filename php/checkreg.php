@@ -44,8 +44,12 @@ if(isset($_POST['email']))
 //Passwort generieren und hashen
 include "password.php";
 $genPassword=passGenerator(9);
-$sPassword=password_hash($genPassword,CRYPT_SHA512);
-$_SESSION['OldPassword']=$sPassword;
+//$sPassword=password_hash($genPassword,CRYPT_SHA512);
+//$sPassword = hash('sha512', $genPassword);
+//$_SESSION['OldPassword']=$sPassword;
+$sPassword = hash('sha512',$genPassword);
+
+
 
 
 
@@ -72,7 +76,7 @@ catch(Exception $e)
 {
     echo "Fehler";
 }
-header("Location: login.php");
+header("Location: firstlogin.php");
 
 
 ?>

@@ -23,14 +23,14 @@
 
         
 
-        $sql="SELECT*FROM user WHERE email='".$sUsername."'AND password='".$sPassword."'";
+  $sql="SELECT*FROM user WHERE email='".$sUsername."'AND password='".hash('sha512',$sPassword)."'";
 
    
         foreach($conn->query($sql) as $row)
         {
             session_start();
 
-            $_SESSION['id']=$row['id'];
+            //$_SESSION['id']=$row['id'];
             $_SESSION['firstname']=$row['firstname'];
             $_SESSION['lastname']=$row['lastname'];
             $_SESSION['email']=$row['email'];
@@ -41,6 +41,8 @@
             $bLoginSuccess=true;
         }
         
+        
+
         $conn=null;
 
         if($bLoginSuccess)

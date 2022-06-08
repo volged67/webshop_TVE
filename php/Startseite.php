@@ -1,3 +1,12 @@
+<?php
+session_start();
+// Check ob man schon eingeloggt ist
+if($_SESSION['login']!=111)
+{
+header("Location: Login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -13,12 +22,6 @@
         .forEach(toastNode => new Toast(toastNode))
     </script>
 
-<!-- PHP Session -->
-    <?php
-
-      session_start();
-
-    ?>
 </head>
 <body>
     
@@ -28,12 +31,13 @@
 <!-- Navigationsleiste einfügen -->
  <?php
     include 'navbar.php';
-    ?>
+  ?>
 
 <!-- Begrüßung (noch zu bearbeiten) -->
 <h1>Herzlich Willkommen</h1>
         <p>Schön, dass du hier bist <b><?php echo $_SESSION['firstname']." ".$_SESSION['lastname']; ?></b></p>
-        <p>Du warst das letzte mal am  <b><?php echo $_SESSION['updated'] ?></b> eingeloggt. <b>
+        <?php $lesbaresDatum = date("d.M.Y H:i:s");?>
+        <p>Du warst das letzte mal am  <b><?php echo $lesbaresDatum ?></b> eingeloggt. <b>
 
  
           

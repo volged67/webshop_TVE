@@ -31,13 +31,18 @@
         </li>
         <li class="nav-item">
           <?php
-          if ($_SESSION['login']=111) {
-            include 'logoutbutton.php';
-          }
-          else {
-            include 'loginbutton.php';
-          }
+          //if ($_SESSION['login']=111) {
+          //  include 'logoutbutton.php';
+          //}
+         // else {
+         //   include 'loginbutton.php';
+         // }
           ?>
+        <li class="nav-item">
+          <a class="nav-link" href="../php/logout.php">
+            <button type="button" class="btn btn-outline-primary">Logout</button>
+          </a>
+        </li>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../php/Warenkorb.php">

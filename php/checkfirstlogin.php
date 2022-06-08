@@ -33,8 +33,10 @@ if(isset($_POST['email']))
     
 
 //$sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".password_hash($sOldPassword,CRYPT_SHA512)."'";
-        $sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".$sOldPassword."'";
+        //$sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".$sOldPassword."'";
         
+        $sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".hash('sha512',$sOldPassword)."'";
+
     
 //Daten aus der Tabelle rausziehen
         foreach($conn->query($sql) as $row)
@@ -45,12 +47,24 @@ if(isset($_POST['email']))
             $sStreet=$row['street'];
             $sPLZ=$row['plz'];
             $sCity=$row['city'];
+            $bFirstLoginSuccess=true;
         }
 
-            $sHashPassword=password_hash($sNewPassword,CRYPT_SHA512);
+//Gehashtes Passwort wird übergeben an die user Tabelle!
+        $sHashPassword=hash('sha512',$sNewPassword);
         $sql2 = "INSERT INTO user (firstname,lastname,street,plz,city,email,password) VALUES (?,?,?,?,?,?,?)";
         $stmt=$conn->prepare($sql2);
         $stmt->execute([$sFirstname,$sLastname,$sStreet,$sPLZ,$sCity,$sMail,$sHashPassword]);
+
+//Weiterleitung je nach erfolgreichem Success
+        if($bFirstLoginSuccess=true)
+        {
+            header("Location: login.php");
+        }
+        else
+        {
+            header("Location: firstlogin.php");
+        }
 }
 
 
