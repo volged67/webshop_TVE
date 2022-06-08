@@ -26,7 +26,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../php/login.php">
-            <button type="button" class="btn btn-outline-primary">Konto wechseln</button>
+            <button type="button" class="btn btn-outline-primary">Anmelden</button>
           </a>
         </li>
         <li class="nav-item">
@@ -41,6 +41,11 @@
         <li class="nav-item">
           <a class="nav-link" href="../php/logout.php">
             <button type="button" class="btn btn-outline-primary">Logout</button>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../php/registrieren.php">
+            <button type="button" class="btn btn-outline-primary">Registrieren</button>
           </a>
         </li>
         </li>
