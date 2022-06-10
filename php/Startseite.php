@@ -39,10 +39,9 @@ header("Location: Login.php");
         <?php $lesbaresDatum = date("d.M.Y H:i:s");?>
         <p>Du warst das letzte mal am  <b><?php echo $lesbaresDatum ?></b> eingeloggt. <b>
 
- <!-- Anzahl User Online -->
- <div id="anzahlUserOnline">
- <p id="online">Test</p>
-</div>      
+<!-- Anzahl User Online -->
+<p id="online">Test</p>
+     
 <!-- Bilderkarousel -->
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -84,6 +83,18 @@ header("Location: Login.php");
           </div>
     </div>
 </div>
+
+<!-- JS Anzahl User Online -->
+<script src="../node_modules/jquery/jquery.js"></script>
+
+<script>
+$(document).ready(function() {
+	$("#online").load("UserOnline.php");
+        var refreshId = setInterval(function() {
+            $("#online").load("UserOnline.php");
+        }, 10000);
+});
+</script>
 
 </body>
 </html>
