@@ -4,6 +4,19 @@
 // jetzt nicht!
 session_start();
 
+//User ausloggen
+//DB Settings
+include 'dbsettings.php';
+
+//Verbindung zur Datenbank
+$conn = new PDO($dsn,$username,$password);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$sUsername=$_SESSION["email"];
+$sqllogedin="UPDATE user SET logedin ='0' WHERE user.email ='$sUsername'";
+             $stmt2=$conn->prepare($sqllogedin);
+             $stmt2->execute();
+
 // Löschen aller Session-Variablen.
 $_SESSION = array();
 
@@ -16,6 +29,7 @@ if (ini_get("session.use_cookies")) {
         $params["domain"], $params["secure"], $params["httponly"]
     );
 }
+
 
 // Zum Schluß, löschen der Session.
 session_destroy();

@@ -1,4 +1,5 @@
 <?php
+
   error_reporting(-1);
   ini_set('display_errors','On');
   
@@ -38,12 +39,15 @@ $result3 = $db->query($smokebox);
 
   <div class="container">
     <div class="p-3 mb-2 bg-secondary text-white">
+
     <!-- Navigationsleiste einfügen -->
-    
   <?php
     include 'navbar.php';
     ?>
-      
+
+<!-- Anzahl User Online -->
+<p id="online">Tets</p>
+
       <!-- Tabelle mit Grid -->
       <hr>
   
@@ -92,5 +96,17 @@ $result3 = $db->query($smokebox);
   
     </div>
   </div>
+<script src="../node_modules/jquery/jquery.js"></script>
+
+  <script>
+$(document).ready(function() {
+	$("#online").load("UserOnline.php");
+        var refreshId = setInterval(function() {
+            $("#online").load("UserOnline.php");
+        }, 10000);
+});
+</script>
+
+
 </body>
 </html>

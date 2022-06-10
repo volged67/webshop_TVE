@@ -1,4 +1,6 @@
 <?php
+ session_start();
+
     $sUsername="";
     $sPassword="";
     $bLoginSuccess=false;
@@ -28,7 +30,7 @@
    
         foreach($conn->query($sql) as $row)
         {
-            session_start();
+           
 
             //$_SESSION['id']=$row['id'];
             $_SESSION['firstname']=$row['firstname'];
@@ -43,6 +45,14 @@
         
         
 
+    //Wenn der User eingelogt wird wird logedin auf 1 gesetzt.
+        if($bLoginSuccess)
+        {
+            $sqllogedin="UPDATE user SET logedin ='1' WHERE user.email =?";
+             $stmt2=$conn->prepare($sqllogedin);
+             $stmt2->execute([$sUsername]);
+        }
+
         $conn=null;
 
         if($bLoginSuccess)
@@ -55,4 +65,6 @@
         }
 
     }
+
+
 ?>
