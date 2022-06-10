@@ -38,6 +38,7 @@
             $_SESSION['email']=$row['email'];
             $_SESSION['login']=111;
             $_SESSION['time']=time();
+            $_SESSION['lastlogin']=$row['lastlogin'];
             //$_SESSION['firstlogin']=$bFirstlogin;
 
             $bLoginSuccess=true;
@@ -51,6 +52,15 @@
             $sqllogedin="UPDATE user SET logedin ='1' WHERE user.email =?";
              $stmt2=$conn->prepare($sqllogedin);
              $stmt2->execute([$sUsername]);
+        }
+
+    //Einfügen der Log In Daten
+        if ($bLoginSuccess) {
+            $userdaten = "INSERT INTO userdata (bildschirm,betriebssystem,email)
+            VALUES(?,?,?)";
+            $stmt=$conn->prepare($userdaten);
+            $stmt->execute(["X",
+            php_uname(),$sUsername]);
         }
 
         $conn=null;

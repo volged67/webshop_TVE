@@ -36,9 +36,25 @@ header("Location: Login.php");
 <!-- Begrüßung (noch zu bearbeiten) -->
 <h1>Herzlich Willkommen</h1>
         <p>Schön, dass du hier bist <b><?php echo $_SESSION['firstname']." ".$_SESSION['lastname']; ?></b></p>
-        <?php $lesbaresDatum = date("d.M.Y H:i:s");?>
-        <p>Du warst das letzte mal am  <b><?php echo $lesbaresDatum ?></b> eingeloggt. <b>
 
+<p>Du warst das letzte mal am  <b>
+<?php
+//DB Settings
+include 'dbsettings.php';
+
+//Verbindung zur Datenbank
+$db = new PDO($dsn,$username,$password);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$statement = $db->prepare("SELECT lastlogin FROM user Where email='".$_SESSION['email']."'");
+$statement->execute(array());  
+while($row = $statement->fetch()) {
+   echo date('d.m.y H:i:s', strtotime($row['lastlogin']))."<br />";
+}
+        
+?>
+</b> eingeloggt. <b>
+  
 <!-- Anzahl User Online -->
 <p id="online">Test</p>
      
