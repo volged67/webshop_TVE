@@ -12,10 +12,17 @@ include 'dbsettings.php';
 $conn = new PDO($dsn,$username,$password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+//Setzt den logedin wieder auf 0 in der Datenbank
 $sUsername=$_SESSION["email"];
 $sqllogedin="UPDATE user SET logedin ='0' WHERE user.email ='$sUsername'";
              $stmt2=$conn->prepare($sqllogedin);
              $stmt2->execute();
+
+//Setzt den lastlogin auf die Logout Zeit
+$sCurrentTime=date('Y-m-d H:i:s');
+$sqllastlogin="UPDATE user SET lastlogin = '$sCurrentTime' WHERE user.email ='$sUsername'";
+             $stmt3=$conn->prepare($sqllastlogin);
+             $stmt3->execute();
 
 // Löschen aller Session-Variablen.
 $_SESSION = array();

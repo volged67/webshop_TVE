@@ -44,8 +44,6 @@
             $bLoginSuccess=true;
         }
         
-        
-
     //Wenn der User eingelogt wird wird logedin auf 1 gesetzt.
         if($bLoginSuccess)
         {

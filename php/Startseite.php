@@ -53,8 +53,8 @@ while($row = $statement->fetch()) {
 }
         
 ?>
-</b> eingeloggt. <b>
-  
+</b> online. <b>
+
 <!-- Anzahl User Online -->
 <p id="online">Test</p>
      
