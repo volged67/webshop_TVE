@@ -6,7 +6,7 @@
     $sPID=$_GET['pid'];
     $sPTitel="";
     $sPPreis="";
-    $sPAnzahl="";
+    //$sPAnzahl=$_GET['anzahl'];
     $sPBildlink="";
     $sAuswahl="";
 
@@ -37,5 +37,11 @@ $sqlwarenkorb= $conn->query($pinfo);
         VALUES(?,?,?,?,?)";
          $stmt3=$conn->prepare($sqlwarenkorb);
          $stmt3->execute([$sPID,$sUserId,$sPTitel,$sPPreis,$sPBildlink]);
+
+//Beenden der DatenbankVerbindung
+$conn=null;
+
+//Weiterleitung zur Artikelübersicht
+header("Location: Artikelseite.php");
 
 ?>

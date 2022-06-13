@@ -10,6 +10,20 @@
               <div class="badge bg-success text-wrap" style="width: 6rem;">
                 <?php echo $row['preis']?>€
               </div>
+              <div>
+                <button class="btn btn-link px-2"
+                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                  <i class="fas fa-minus"></i>
+                </button>
+
+                <input id="form1" min="0" name="quantity" value="0" type="number"
+                  class="form-control form-control-sm" />
+
+                <button class="btn btn-link px-2"
+                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
             </div>
           </div>
 
