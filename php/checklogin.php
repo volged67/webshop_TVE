@@ -32,7 +32,7 @@
         {
            
 
-            //$_SESSION['id']=$row['id'];
+            $_SESSION['id']=$row['userID'];
             $_SESSION['firstname']=$row['firstname'];
             $_SESSION['lastname']=$row['lastname'];
             $_SESSION['email']=$row['email'];
