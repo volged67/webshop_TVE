@@ -58,8 +58,6 @@ while($row = $statement->fetch()) {
 <!-- Anzahl User Online -->
 <p id="online">Test</p>
 
-<!-- Test Session id -->
-<?php echo $_SESSION['id']; ?>
      
 <!-- Bilderkarousel -->
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

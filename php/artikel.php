@@ -15,7 +15,7 @@
                   <i class="fas fa-minus"></i>
                 </button>
 
-                <input id="form1" min="0" name="quantity" value="<?php echo $row['panzahl']?>" type="number"
+                <input id="form1" min="0" name="quantity" value="1" type="number"
                   class="form-control form-control-sm" />
 
                 <button class="btn btn-link px-2"

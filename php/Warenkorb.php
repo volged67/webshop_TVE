@@ -57,6 +57,14 @@ $result = $db->query($userwaren);
 
         <div class="card">
           <div class="card-body">
+            <label for="password" class="text-info">Gesamtsumme:</label><br>
+            <label for="gesamtsumme" class="text-info">Hier muss die Gesamtsumme rein</label><br>
+          </div>
+        </div>
+        <br>
+
+        <div class="card">
+          <div class="card-body">
             <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
           </div>
         </div>
