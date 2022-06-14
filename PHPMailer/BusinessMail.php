@@ -35,9 +35,13 @@ $mailFrom="From: huqqah";
 //set email subject
     $mail->Subject = "Ihr huqqah Passwort!";
 //set sender email
-    $mail->setFrom("volkan.gedik6798@gmail.com");
+   $mail->setFrom("volkan.gedik6798@gmail.com");
+//Enable HTML
+    $mail->isHTML(true);
+//LOGO
+    $mail->AddEmbeddedImage('img/logo.jpg','logo_2u');
 //email body
-    $mail->Body = "Hallo $sFirstname $sLastname, dein Passwort ist: $genPassword";
+    $mail->Body = "Hallo <p>$sFirstname $sLastname</p>, dein Passwort ist: <p>$genPassword</p>";
 //Add recipient
     $mail->addAddress($sMail);
 //Finally send email
