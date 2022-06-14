@@ -36,8 +36,20 @@ $mailFrom="From: huqqah";
     $mail->Subject = "Ihr huqqah Passwort!";
 //set sender email
     $mail->setFrom("volkan.gedik6798@gmail.com");
-//email body
-    $mail->Body = "Dein Passwort kannst du über diesen Link zurücksetzen http://localhost/webshop_TVE/php/passwortNeu.php";
+    //Enable HTML
+    $mail->isHTML(true);
+//LOGO
+    $mail->addEmbeddedImage('../img/logo.png','logo');
+//email body 
+    $mail->Body ="  <html>
+                        <body>
+                           <p><img src=\"cid:logo\"></p>
+                            <p>Dein Passwort kannst du ueber diesen Link zuruecksetzen http://localhost/webshop_TVE/php/passwortNeu.php</p>
+                            <br/>
+                            <p>Ihr Huqqah Team</p>
+                        </body>
+                     </html>";
+    
 //Add recipient
     $mail->addAddress($sMail);
 //Finally send email

@@ -39,9 +39,9 @@ $mailFrom="From: huqqah";
 //Enable HTML
     $mail->isHTML(true);
 //LOGO
-    $mail->AddEmbeddedImage('img/logo.jpg','logo_2u');
+    $mail->AddEmbeddedImage('../img/logo.jpg','logo.jpg');
 //email body
-    $mail->Body = "Hallo <p>$sFirstname $sLastname</p>, dein Passwort ist: <p>$genPassword</p>";
+    $mail->Body = "Hallo <b>$sFirstname $sLastname</b>, dein Passwort ist: <b>$genPassword</b>";
 //Add recipient
     $mail->addAddress($sMail);
 //Finally send email

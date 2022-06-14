@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -36,8 +37,21 @@ $mailFrom="From: huqqah";
     $mail->Subject = "Ihr huqqah Passwort!";
 //set sender email
     $mail->setFrom("volkan.gedik6798@gmail.com");
-//email body
-    $mail->Body = "Hallo $sFirstname $sLastname, dein Passwort ist: $genPassword";
+//Enable HTML
+    $mail->isHTML(true);
+//LOGO
+    $mail->addEmbeddedImage('../img/logo.png','logo');
+//email body 
+    $mail->Body ="  <html>
+                        <body>
+                           <p><img src=\"cid:logo\"></p>
+                            <p>Hallo <b>$sFirstname $sLastname</b>,</p> dein voruebergehendes Passwort lautet: <b>$genPassword</b>
+                            <br/>
+                            <p>Ihr Huqqah Team</p>
+                        </body>
+                     </html>";
+    
+    
 //Add recipient
     $mail->addAddress($sMail);
 //Finally send email
