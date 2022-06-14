@@ -20,23 +20,25 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="checkfirstlogin.php" method="post">
+                        <form id="login-form" class="form" action="checkNeuesPasswort.php" method="post">
                             <h3 class="text-center text-info">Neues Passwort vergeben!</h3>
                             <br>
                             
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="text-info">Email:</label><br>
-                                <input type="email" name="email" id="email" class="form-control">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="E-Mail Adresse eingeben!">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-info">Altes Passwort:</label><br>
-                                <input type="password" name="oldpassword" id="password" class="form-control">
+                                <label for="password" class="text-info">Neues Passwort:</label><br>
+                                <input type="password" name="neuespasswort" id="password" class="form-control" placeholder="neues Passwort eingeben" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{9,}"
+                                            title="Das Passwort muss mindestens eine Zahl, einen Groß- und Kleinbuchstaben und 9 Zeichen haben."
+                                            autocomplete="off" />
                             </div>
 
                             <div class="form-group">
-                                <label for="password" class="text-info">Neues Passwort:</label><br>
-                                <input type="password" name="newpassword" id="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{9,}"
-                                title="Das Passwort muss mindestens eine Zahl, einen Groß- und Kleinbuchstaben und 9 Zeichen haben."
+                                <label for="password" class="text-info">Passwort wiederholen:</label><br>
+                                <input type="password" name="neuespasswortwiederholen" id="password" class="form-control" placeholder="neues Passwort wiederholen" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{9,}"
+                                            title="Das Passwort muss mindestens eine Zahl, einen Groß- und Kleinbuchstaben und 9 Zeichen haben."
                                             autocomplete="off" />
                             </div>
                             
