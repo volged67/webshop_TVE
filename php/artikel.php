@@ -24,7 +24,7 @@
                 </button>
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0"><?php echo $row['ppreis']?></h5>
+                <h5 class="mb-0">Summe:<br><?php echo $row['psumme']?></h5>
               </div>
               <div class="col-md-2 col-lg-2 col-xl-2">
               <a href="loeschenAusWarenkorb.php?wid=<?php echo $row['wid']?>" class="text-danger"><i class="btn-close"></i></a>

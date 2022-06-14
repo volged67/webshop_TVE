@@ -47,6 +47,9 @@ if ($sPMenge>0 AND $result>0) {
         $sqlwarenkorb3->execute([$sPID]);
         $sqlprodukte=$conn->prepare("UPDATE produkte SET menge=menge-1 WHERE id= ?");
         $sqlprodukte->execute([$sPID]);
+        //SQL Warenkorb Summe updaten wenn das Produkt schon im Warenkorb ist
+        $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis WHERE pid= ?");
+        $sqlwarenkorbsumme->execute([$sPID]);
 } 
 if($result==0) 
 {
@@ -59,13 +62,15 @@ if($result==0)
 
          $sqlwarenkorb2=$conn->prepare("UPDATE warenkorb SET panzahl=1 WHERE pid= ?");
          $sqlwarenkorb2->execute([$sPID]);
+        //SQL Warenkorb Summe updaten beim ersten einsetzen des Produktes
+        $sqlwarenkorbsumme2=$conn->prepare("UPDATE warenkorb SET psumme=ppreis WHERE pid= ?");
+        $sqlwarenkorbsumme2->execute([$sPID]);
 
          if ($sPMenge==0) {
             $sqlprodukte2=$conn->prepare("UPDATE produkte SET menge=menge-1 WHERE id= ?");
             $sqlprodukte2->execute([$sPID]);
 
-         }
-         
+         }        
 }
 else {
     echo "Produkt konnte nicht in den Warenkorb hinzugefügt werden!";
