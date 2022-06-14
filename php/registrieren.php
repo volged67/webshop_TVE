@@ -37,7 +37,9 @@
                                             <label for="name" class="text-info">Nachname</label><br>
                                             <input id="regNachname" type="text" name="lastname"  class="form-control" placeholder="Mustermann"><br>
                                                 <label for="exampleInputEmail1" class="text-info">E-Mail</label><br>
-                                                <input id="regEmail" type="mail" name="email" class="form-control" aria-describedby="emailHelp" placeholder="maxmustermann@gmail.com"><br>
+                                                <input id="regEmail" type="mail" name="email" class="form-control" aria-describedby="emailHelp" placeholder="maxmustermann@gmail.com"
+                                                pattern=".{3,}[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="E-Mail Format falsch!"  autocomplete="off">
+                                                <br>
                                                 <label for="name" class="text-info">Straße</label><br>
                                                 <input id="regStrasse" type="text" name="street" class="form-control" placeholder="Altburgstr.150"><br>
                                                 <label for="name" class="text-info">Ort</label><br>

@@ -41,7 +41,13 @@ if(isset($_POST['email']))
 {
     $sMail=$_POST['email'];
 }
-//Passwort generieren und hashen
+
+if( empty($_POST['firstname']) OR empty($_POST['lastname']) OR empty($_POST['email']) OR empty($_POST['street']) OR empty($_POST['plz']) OR empty($_POST['city']) ) {
+    header("Location: registrieren.php");
+    echo "Nicht alle Felder ausgefüllt!";
+}
+else {
+    //Passwort generieren und hashen
 include "password.php";
 $genPassword=passGenerator(9);
 //$sPassword=password_hash($genPassword,CRYPT_SHA512);
@@ -65,9 +71,25 @@ try
   $conn = new PDO($dsn,$username,$password);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-     $sql = "INSERT INTO register_user (regid,firstname,lastname,street,plz,city,email,password,firstlogin) VALUES (?,?,?,?,?,?,?,?,?)";
+ // Existiert die email bereits?
+ $query=$conn->prepare("SELECT * FROM register_user WHERE email= ?");
+ $query->execute([$sMail]);
+ $result = $query->rowCount();
+ if($result >0){
+     $error = "Email already exists";
+     header("Location: registrieren.php");
+     echo  "Email already exists";
+ }
+  else 
+  {
+    $sql = "INSERT INTO register_user (regid,firstname,lastname,street,plz,city,email,password,firstlogin) VALUES (?,?,?,?,?,?,?,?,?)";
      $stmt=$conn->prepare($sql);
      $stmt->execute([$iSessionuserId,$sFirstname,$sLastname,$sStreet,$sPLZ,$sCity,$sMail,$sPassword,$bFirstlogin]);
+     header("Location: firstlogin.php");
+  }
+  
+
+    
 
      //Verbindung schließen
      $conn=null;
@@ -76,7 +98,10 @@ catch(Exception $e)
 {
     echo "Fehler";
 }
-header("Location: firstlogin.php");
+
+}
+
+
 
 
 ?>

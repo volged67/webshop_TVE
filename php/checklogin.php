@@ -43,24 +43,66 @@
 
             $bLoginSuccess=true;
         }
-        
-    //Wenn der User eingelogt wird wird logedin auf 1 gesetzt.
-        if($bLoginSuccess)
-        {
-            $sqllogedin="UPDATE user SET logedin ='1' WHERE user.email =?";
-             $stmt2=$conn->prepare($sqllogedin);
-             $stmt2->execute([$sUsername]);
-        }
 
-    //Einfügen der Log In Daten
+
         if ($bLoginSuccess) {
-            $userdaten = "INSERT INTO userdata (bildschirm,betriebssystem,email)
-            VALUES(?,?,?)";
-            $stmt=$conn->prepare($userdaten);
-            $stmt->execute(["X",
-            php_uname(),$sUsername]);
-        }
 
+
+            // Selektiere die userdata und kontrolliere ob bereits die email vom input drinne steht
+            $query=$conn->prepare("SELECT * FROM userdata WHERE email= ?");
+            $query->execute([$sUsername]);
+            $result = $query->rowCount();
+            // Prüfen ob bereits ein eintrag für die userdata erstellt wurde, falls ja wird diese geupdatet
+            if($result >0){
+                $sqlUpdateUserData ="UPDATE userdata SET bildschirm=?, betriebssystem=?, email=?   WHERE email=?";
+                $stmt=$conn->prepare($sqlUpdateUserData);
+                $stmt->execute(["",php_uname(),$sUsername,$sUsername]);
+
+                //Wenn der User eingelogt wird wird logedin auf 1 gesetzt.
+                if($bLoginSuccess)
+                {
+                    $sqllogedin="UPDATE user SET logedin ='1' WHERE user.email =?";
+                    $stmt2=$conn->prepare($sqllogedin);
+                    $stmt2->execute([$sUsername]);
+                }
+            }
+            // falls kein eintrag in userdata für die emai drinne war wird diese neu erstellt in userdata
+            else {
+                $userdaten = "INSERT INTO userdata (bildschirm,betriebssystem,email)
+                VALUES(?,?,?)";
+                $stmt=$conn->prepare($userdaten);
+                $stmt->execute(["",
+                php_uname(),$sUsername]);
+
+                //Wenn der User eingelogt wird wird logedin auf 1 gesetzt.
+                if($bLoginSuccess)
+                {
+                    $sqllogedin="UPDATE user SET logedin ='1' WHERE user.email =?";
+                    $stmt2=$conn->prepare($sqllogedin);
+                    $stmt2->execute([$sUsername]);
+                }
+            }
+            
+        }
+        
+    // //Wenn der User eingelogt wird wird logedin auf 1 gesetzt.
+    //     if($bLoginSuccess)
+    //     {
+    //         $sqllogedin="UPDATE user SET logedin ='1' WHERE user.email =?";
+    //          $stmt2=$conn->prepare($sqllogedin);
+    //          $stmt2->execute([$sUsername]);
+    //     }
+
+    // //Einfügen der Log In Daten
+    //     if ($bLoginSuccess) {
+    //         $userdaten = "INSERT INTO userdata (bildschirm,betriebssystem,email)
+    //         VALUES(?,?,?)";
+    //         $stmt=$conn->prepare($userdaten);
+    //         $stmt->execute(["X",
+    //         php_uname(),$sUsername]);
+    //     }
+
+    //Beenden Der Datenbankverbindung
         $conn=null;
 
         if($bLoginSuccess)

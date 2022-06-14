@@ -6,7 +6,7 @@
     $sPID=$_GET['pid'];
     $sPTitel="";
     $sPPreis="";
-    //$sPAnzahl=$_GET['anzahl'];
+    $sPAnzahl="";
     $sPBildlink="";
     $sAuswahl="";
 
