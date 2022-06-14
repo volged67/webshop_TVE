@@ -6,7 +6,7 @@
     $sPID=$_GET['pid'];
     $sPTitel="";
     $sPPreis="";
-    $sPAnzahl="";
+    $sPMenge="";
     $sPBildlink="";
     $sAuswahl="";
 
@@ -28,15 +28,53 @@ foreach($conn->query($pinfo) as $row)
             $sPTitel=$row['titel'];
             $sPPreis=$row['preis'];
             $sPBildlink=$row['bildlink'];
+            $sPMenge=$row['menge'];
         }
 
-$sqlwarenkorb= $conn->query($pinfo);
+        
 
+
+
+
+$query=$conn->prepare("SELECT * FROM warenkorb WHERE pid= ?");
+$query->execute([$sPID]);
+$result = $query->rowCount();
+
+
+if ($sPMenge>0 AND $result>0) {
+    //Produktanzahl aktualisieren
+        $sqlwarenkorb3=$conn->prepare("UPDATE warenkorb SET panzahl=panzahl+1 WHERE pid= ?");
+        $sqlwarenkorb3->execute([$sPID]);
+        $sqlprodukte=$conn->prepare("UPDATE produkte SET menge=menge-1 WHERE id= ?");
+        $sqlprodukte->execute([$sPID]);
+} 
+if($result==0) 
+{
+    $sqlwarenkorb= $conn->query($pinfo);
     //SQL Produkte in den Warenkorb legen
         $sqlwarenkorb="INSERT INTO warenkorb (pid,userid,ptitel,ppreis,pbildlink)
         VALUES(?,?,?,?,?)";
          $stmt3=$conn->prepare($sqlwarenkorb);
          $stmt3->execute([$sPID,$sUserId,$sPTitel,$sPPreis,$sPBildlink]);
+
+         $sqlwarenkorb2=$conn->prepare("UPDATE warenkorb SET panzahl=1 WHERE pid= ?");
+         $sqlwarenkorb2->execute([$sPID]);
+
+         if ($sPMenge==0) {
+            $sqlprodukte2=$conn->prepare("UPDATE produkte SET menge=menge-1 WHERE id= ?");
+            $sqlprodukte2->execute([$sPID]);
+
+         }
+         
+}
+else {
+    echo "Produkt konnte nicht in den Warenkorb hinzugefügt werden!";
+}
+
+
+   
+    
+    
 
 //Beenden der DatenbankVerbindung
 $conn=null;
