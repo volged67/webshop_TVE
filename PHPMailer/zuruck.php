@@ -50,9 +50,6 @@ $mailFrom="From: huqqah";
                         </body>
                      </html>";
     
-    
-/*email body
-    $mail->Body = "Dein Passwort kannst du über diesen Link zuruecksetzen http://localhost/webshop_TVE/php/passwortNeu.php";*/
 //Add recipient
     $mail->addAddress($sMail);
 //Finally send email
