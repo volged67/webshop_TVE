@@ -12,7 +12,7 @@ $db = new PDO($dsn,$username,$password);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $userid=$_SESSION['id'];
-$bestellung ="SELECT * FROM warenkorb WHERE userid=$userid" AND wid=$wid;
+$bestellung ="SELECT * FROM warenkorb WHERE userid=$userid AND wid=$wid"; 
 
 $result = $db->query($bestellung);
 
