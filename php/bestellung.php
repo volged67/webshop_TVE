@@ -11,10 +11,11 @@ include 'dbsettings.php';
 $db = new PDO($dsn,$username,$password);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$userid=$_SESSION['id'];
+/* $userid=$_SESSION['id'];
 $bestellung ="SELECT * FROM warenkorb WHERE userid=$userid AND wid=$wid"; 
 
 $result = $db->query($bestellung);
+*/
 
 ?>
 
@@ -33,7 +34,7 @@ $result = $db->query($bestellung);
     <?php
     include 'navbar.php';
     ?>
-
+  
     
 </body>
 </html>
