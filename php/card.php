@@ -23,6 +23,9 @@
                   onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                   <i class="fas fa-plus"></i>
                 </button>
+                <div>
+                  <p>Verfügbare Menge:<?php echo $row['menge']?></p>
+                </div>
               </div>
             </div>
           </div>
