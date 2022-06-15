@@ -37,15 +37,19 @@ $mailFrom="From: huqqah";
     $mail->Subject = "Ihr huqqah Passwort!";
 //set sender email
     $mail->setFrom("volkan.gedik6798@gmail.com");
+//Damit Umlaute funktionieren
+    $mail->CharSet ="UTF-8";
 //Enable HTML
-    $mail->isHTML(true);
+    $mail->isHTML(true) ;
 //LOGO
     $mail->addEmbeddedImage('../img/logo.png','logo');
 //email body 
     $mail->Body ="  <html>
+                     
                         <body>
+                        
                            <p><img src=\"cid:logo\"></p>
-                            <p>Hallo <b>$sFirstname $sLastname</b>,</p> dein voruebergehendes Passwort lautet: <b>$genPassword</b>
+                            <p>Hallo <b>$sFirstname $sLastname</b>,</p> dein vorübergehendes Passwort lautet: <b>$genPassword</b>
                             <br/>
                             <p>Ihr Huqqah Team</p>
                         </body>

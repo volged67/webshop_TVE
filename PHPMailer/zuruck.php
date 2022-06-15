@@ -36,6 +36,8 @@ $mailFrom="From: huqqah";
     $mail->Subject = "Ihr huqqah Passwort!";
 //set sender email
     $mail->setFrom("volkan.gedik6798@gmail.com");
+//Damit Umlaute funktionieren
+    $mail->CharSet ="UTF-8";
     //Enable HTML
     $mail->isHTML(true);
 //LOGO
@@ -44,7 +46,7 @@ $mailFrom="From: huqqah";
     $mail->Body ="  <html>
                         <body>
                            <p><img src=\"cid:logo\"></p>
-                            <p>Dein Passwort kannst du ueber diesen Link zuruecksetzen http://localhost/webshop_TVE/php/passwortNeu.php</p>
+                            <p>Dein Passwort kannst du über diesen Link zurücksetzen http://localhost/webshop_TVE/php/passwortNeu.php</p>
                             <br/>
                             <p>Ihr Huqqah Team</p>
                         </body>
