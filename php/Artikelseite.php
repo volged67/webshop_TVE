@@ -1,4 +1,5 @@
 <?php
+session_start();
 
   error_reporting(-1);
   ini_set('display_errors','On');
@@ -21,6 +22,7 @@ $result2 = $db->query($phunnel);
 $smokebox= "SELECT * FROM produkte WHERE produktart='Smokebox'";
 
 $result3 = $db->query($smokebox);
+
 
 ?>
 

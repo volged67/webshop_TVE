@@ -54,6 +54,11 @@ if ($sPMenge>0 AND $result>0 AND $sAnzahl<=$sPMenge) {
         //SQL Warenkorb Summe updaten wenn das Produkt schon im Warenkorb ist
         $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis WHERE pid= ?");
         $sqlwarenkorbsumme->execute([$sPID]);
+        //Beenden der DatenbankVerbindung
+        $conn=null;
+
+        //Weiterleitung zur Artikelübersicht
+        header("Location: Artikelseite.php");
 } 
 if($sPMenge>0 AND $result==0 AND $sAnzahl<=$sPMenge) 
 {
@@ -72,10 +77,16 @@ if($sPMenge>0 AND $result==0 AND $sAnzahl<=$sPMenge)
         //SQL Warenkorb Summe updaten beim ersten einsetzen des Produktes
         $sqlwarenkorbsumme2=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis WHERE pid= ?");
         $sqlwarenkorbsumme2->execute([$sPID]);
+
+        //Beenden der DatenbankVerbindung
+        $conn=null;
+
+        //Weiterleitung zur Artikelübersicht
+        header("Location: Artikelseite.php");
                  
 }
 else {
-    echo "Produkt konnte nicht in den Warenkorb hinzugefügt werden!";
+    header("Location: produktNichtVerfuegbar.php");
 }
 
 
@@ -86,7 +97,7 @@ else {
 //Beenden der DatenbankVerbindung
 $conn=null;
 
-//Weiterleitung zur Artikelübersicht
-header("Location: Artikelseite.php");
+// //Weiterleitung zur Artikelübersicht
+// header("Location: Artikelseite.php");
 
 ?>

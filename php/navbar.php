@@ -1,3 +1,30 @@
+
+  <?php
+  
+  error_reporting(-1);
+  ini_set('display_errors','On');
+  
+  //DB Settings
+  include 'dbsettings.php';
+  
+  //Verbindung zur Datenbank
+  $db = new PDO($dsn,$username,$password);
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  
+  //Summe der Artikel im Warenkorb
+  $userid=$_SESSION['id'];
+  $amount="SELECT SUM(panzahl) FROM warenkorb WHERE userid=$userid";
+
+  foreach($db->query($amount) as $row)
+        {
+            $sZahl=$row['SUM(panzahl)'];
+        }
+  
+  ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +81,7 @@
             <button type="button" class="btn btn-outline-primary position-absolute">
               Warenkorb
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                99+
+                <?php echo $sZahl; ?>
                 <span class="visually-hidden">Warenkorb</span>
               </span>
             </button>

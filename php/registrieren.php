@@ -12,9 +12,7 @@
 </head>
 
 <body>
-    <?php
-    include 'navbar.php';
-    ?>
+    
 
     <div id="login">
         <h3 class="text-center text-white pt-5">Registrieren</h3>
