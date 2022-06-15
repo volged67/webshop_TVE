@@ -11,11 +11,11 @@ include 'dbsettings.php';
 $db = new PDO($dsn,$username,$password);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-/* $userid=$_SESSION['id'];
-$bestellung ="SELECT * FROM warenkorb WHERE userid=$userid AND wid=$wid"; 
+ $userid=$_SESSION['id'];
+ $bestellung ="SELECT * FROM warenkorb WHERE userid=$userid"; 
+ //$bestellung ="SELECT * FROM warenkorb WHERE userid=$userid AND wid=$wid"; 
+ $result = $db->query($bestellung); 
 
-$result = $db->query($bestellung);
-*/
 
 ?>
 
@@ -34,7 +34,35 @@ $result = $db->query($bestellung);
     <?php
     include 'navbar.php';
     ?>
+    <html>
+        <p>Hallo <?php  $sFirstname /*$sLastname*/ ?> </p>
+        <p> Ihre Bestellungnummer lautet: <?php //$wid ?> </p>
+        <b>Bestellübersicht</b>
+
+        <table class="table table-striped">
+        <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Artikelnummer</th>
+      <th scope="col">Bezeichnung</th>
+      <th scope="col">Anzahl</th>
+      <th scope="col">Preis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>121</td>
+      <td>phunnel</td>
+      <td>1</td>
+      <td>25,99€</td>
+    </tr>
   
+  </tbody>
+
+        </table>
+
+    </html>
     
 </body>
 </html>
