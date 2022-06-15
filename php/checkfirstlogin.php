@@ -6,6 +6,14 @@ $sMail="";
 $sOldPassword="";
 $sNewPassword="";
 
+$sFirstname="";
+$sLastname="";
+$sStreet="";
+$sPLZ="";
+$sCity="";
+
+
+
 if(isset($_POST['email']))
     {
         $sMail=htmlspecialchars($_POST['email']);
@@ -20,14 +28,15 @@ if(isset($_POST['email']))
         $sNewPassword=htmlspecialchars($_POST['newpassword']);
     }
 
-    if ($sMail!=="" && $sOldPassword!=="" && $sNewPassword!=="")
+    try {
+        if ($sMail!=="" && $sOldPassword!=="" && $sNewPassword!=="")
     {
         //DB Settings
-  include 'dbsettings.php';
+            include 'dbsettings.php';
 
-//Verbindung zur Datenbank
-  $conn = new PDO($dsn,$username,$password);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //Verbindung zur Datenbank
+            $conn = new PDO($dsn,$username,$password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
     
@@ -35,13 +44,13 @@ if(isset($_POST['email']))
 //$sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".password_hash($sOldPassword,CRYPT_SHA512)."'";
         //$sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".$sOldPassword."'";
         
-        $sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".hash('sha512',$sOldPassword)."'";
+        $sql="SELECT * FROM register_user WHERE email='".$sMail."'AND password='".hash('sha512',$sOldPassword)."'";
 
     
 //Daten aus der Tabelle rausziehen
         foreach($conn->query($sql) as $row)
         {
-            $sUserID=$row['regid'];
+            //$sUserID=$row['regid'];
             $sFirstname=$row['firstname'];
             $sLastname=$row['lastname'];
             $sStreet=$row['street'];
@@ -66,6 +75,10 @@ if(isset($_POST['email']))
             header("Location: firstlogin.php");
         }
 }
+    } catch (Exception $e) {
+        echo "Fehler";
+    }
+    
 
 
 
