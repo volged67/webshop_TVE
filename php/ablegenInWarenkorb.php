@@ -60,7 +60,7 @@ if ($sPMenge>0 AND $result>0 AND $sAnzahl<=$sPMenge) {
         //Weiterleitung zur Artikelübersicht
         header("Location: Artikelseite.php");
 } 
-if($sPMenge>0 AND $result==0 AND $sAnzahl<=$sPMenge) 
+if($sPMenge>0 AND $sAnzahl<=$sPMenge) 
 {
     $sqlwarenkorb= $conn->query($pinfo);
         //SQL Produkte in den Warenkorb legen
@@ -86,6 +86,8 @@ if($sPMenge>0 AND $result==0 AND $sAnzahl<=$sPMenge)
                  
 }
 else {
+
+    //echo "Das Produkt ist leider nicht mehr verfügbar";
     header("Location: produktNichtVerfuegbar.php");
 }
 

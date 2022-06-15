@@ -16,6 +16,14 @@ $userwaren ="SELECT * FROM warenkorb WHERE userid=$userid";
 
 $result = $db->query($userwaren);
 
+ //Summe der Artikelsumme im Warenkorb
+ $amount="SELECT SUM(psumme) FROM warenkorb WHERE userid=$userid";
+
+ foreach($db->query($amount) as $row)
+       {
+           $sSumme=$row['SUM(psumme)'];
+       }
+
 
 ?>
 <!DOCTYPE html>
@@ -58,7 +66,7 @@ $result = $db->query($userwaren);
         <div class="card">
           <div class="card-body">
             <label for="password" class="text-info">Gesamtsumme:</label><br>
-            <label for="gesamtsumme" class="text-info">Hier muss die Gesamtsumme rein</label><br>
+            <label for="gesamtsumme" class="text-info"><?php echo $sSumme; ?> </label><br>
           </div>
         </div>
         <br>
