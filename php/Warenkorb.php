@@ -25,6 +25,7 @@ $result = $db->query($userwaren);
        }
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -66,7 +67,9 @@ $result = $db->query($userwaren);
         <div class="card">
           <div class="card-body">
             <label for="password" class="text-info">Gesamtsumme:</label><br>
-            <label for="gesamtsumme" class="text-info"><?php echo $sSumme; ?> </label><br>
+            <label for="gesamtsumme" class="text-info"><?php echo 
+            sprintf("%01.2f", $sSumme);
+            ?> </label><br>
           </div>
         </div>
         <br>
