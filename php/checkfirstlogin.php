@@ -44,7 +44,7 @@ if(isset($_POST['email']))
 //$sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".password_hash($sOldPassword,CRYPT_SHA512)."'";
         //$sql="SELECT*FROM register_user WHERE email='".$sMail."'AND password='".$sOldPassword."'";
         
-        $sql="SELECT * FROM register_user WHERE email='".$sMail."'AND password='".hash('sha512',$sOldPassword)."'";
+        $sql="SELECT * FROM register_user WHERE email='".$sMail."' AND password='".hash('sha512',$sOldPassword)."'";
 
     
 //Daten aus der Tabelle rausziehen

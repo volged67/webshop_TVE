@@ -17,7 +17,7 @@
                   <i class="fas fa-minus"></i>
                 </button>
 
-                <input id="form1" min="0" name="anzahl" value="0" type="number"
+                <input id="form1" min="1" name="anzahl" value="1" type="number"
                   class="form-control form-control-sm" />
 
                 <button class="btn btn-link px-2"
