@@ -77,7 +77,7 @@ try
  $result = $query->rowCount();
  if($result >0){
      $error = "Email already exists";
-     header("Location: registrieren.php");
+     //header("Location: registrieren.php");
      echo  "Email already exists";
  }
   else 

@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-  error_reporting(-1);
-  ini_set('display_errors','On');
+  // error_reporting(-1);
+  // ini_set('display_errors','On');
   
 //DB Settings
   include 'dbsettings.php';
@@ -16,7 +16,7 @@ $userwaren ="SELECT * FROM warenkorb WHERE userid=$userid";
 
 $result = $db->query($userwaren);
 
- //Summe der Artikelsumme im Warenkorb
+ //Artikelsumme im Warenkorb
  $amount="SELECT SUM(psumme) FROM warenkorb WHERE userid=$userid";
 
  foreach($db->query($amount) as $row)
@@ -35,7 +35,7 @@ $result = $db->query($userwaren);
      <!-- Bootstrap -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
      
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 </head>
 <body>
     <!-- Navigationsleiste -->
@@ -57,7 +57,47 @@ $result = $db->query($userwaren);
           
             <div class="col">
               <?php
-                include 'artikel.php';
+                //Artikel einfügen
+                
+                echo "
+                
+                <div class='card rounded-3 mb-4'>
+                        <div class='card-body p-4'>
+                          <div class='row d-flex justify-content-between align-items-center'>
+                            <div class='col-md-2 col-lg-2 col-xl-2'>
+                              <img src='../img/".$row['pbildlink']."'
+                              class='img-fluid rounded-3' alt='Cotton T-shirt'>
+                            </div>
+                            <div class='col-md-3 col-lg-3 col-xl-3'>
+                              <p class='lead fw-normal mb-2'>".$row['ptitel']."</p>
+                              <p><span class='text-muted'>Preis: </span>".$row['ppreis']."</p>
+                            </div>
+
+                            
+
+                            <div class='col-md-3 col-lg-3 col-xl-2 d-flex'>
+                            <button onClick='testminus(this)'>-</button>
+
+                              <input id='form1' min='0' name='quantity' value='".$row['panzahl']."' type='number'
+                                class='form-control form-control-sm' />
+
+                              
+                              <button onClick='testplus(this)'>+</button>
+                            </div>
+                            <div class='col-md-3 col-lg-2 col-xl-2 offset-lg-1'>
+                              <h5 class='mb-0'>Summe:<br>".sprintf("%01.2f", $row['psumme'])."</h5>
+                            </div>
+                            <div class='col-md-2 col-lg-2 col-xl-2'>
+                            <a href='loeschenAusWarenkorb.php?wid=".$row['wid']." class='text-danger'><i class='btn-close'></i></a>
+                            </div>
+                          </div>
+                        </div>
+        </div>
+      
+        ";
+        
+        
+
               ?>
             </div>
           
@@ -84,5 +124,50 @@ $result = $db->query($userwaren);
     </div>
   </div>
 </section>
+
+<!-- <script src="../node_modules/jquery/dist/jquery.js"></script> -->
+
+<script>
+function testplus(event){
+  console.log("+");
+  console.dir(event);
+  console.log(event.parentElement.childNodes[3].value);
+  let inputartikelx=event.parentElement.childNodes[3];
+  console.log(inputartikelx.value);
+  inputartikelx.value = (Number(inputartikelx.value) +1);
+  console.log(inputartikelx.value);
+
+  //Variable zum Übergeben definieren
+  var jsvar = inputartikelx.value;
+
+  //Test 1
+  window.location.href = "test.php?jsvar=" + jsvar;
+
+  //test2
+  // $.ajax({
+  //                   url: "test2.php",
+  //                   type: "POST",
+  //                   data: {wert: jsvar},
+  //                   success: function(data){
+  //                       console.log("worked", data);
+  //                   },
+  //                   error: function(data){
+  //                       console.error("error", data);
+  //                   }
+  //          });
+}
+  
+
+function testminus(event){
+  console.log("-");
+  console.dir(event);
+  console.log(event.parentElement.childNodes[3].value);
+  let inputartikelx=event.parentElement.childNodes[3];
+  console.log(inputartikelx.value);
+  inputartikelx.value = (Number(inputartikelx.value) -1);
+  console.log(inputartikelx.value);
+}
+</script>
+
 </body>
 </html>

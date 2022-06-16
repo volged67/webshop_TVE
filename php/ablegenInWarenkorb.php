@@ -39,13 +39,13 @@ foreach($conn->query($pinfo) as $row)
         }
 
 
-$query=$conn->prepare("SELECT * FROM warenkorb WHERE pid= ?");
-$query->execute([$sPID]);
+$query=$conn->prepare("SELECT * FROM warenkorb WHERE pid= ? AND userid= ?");
+$query->execute([$sPID,$sUserId]);
 $result = $query->rowCount();
 
 
 if ($sPMenge>0 AND $result>0 AND $sAnzahl<=$sPMenge) {
-    //Produktanzahl aktualisieren
+        //Produktanzahl aktualisieren
         $sqlwarenkorb3=$conn->prepare("UPDATE warenkorb SET panzahl=panzahl+$sAnzahl WHERE pid= ?");
         $sqlwarenkorb3->execute([$sPID]);
         //SQL Produkte Bestand verändern

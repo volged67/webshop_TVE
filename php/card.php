@@ -1,6 +1,6 @@
 <form action="ablegenInWarenkorb.php?pid=<?php echo $row['id']?>" method = "post">
 <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src=<?php echo $row['bildlink']?> alt="Card image cap">
+            <img class="card-img-top" src="../img/<?php echo $row['bildlink']?>" alt="Card image cap">
             <div class="card-body" style="color: black;">
               <h5 class="card-title"><?php echo $row['titel']?></h5>
               <p class="card-text"><?php echo $row['beschreibung']?></p>
