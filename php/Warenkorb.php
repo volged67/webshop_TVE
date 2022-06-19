@@ -142,6 +142,7 @@ function testplus(event){
 
   //Test 1
   window.location.href = "test.php?jsvar=" + jsvar;
+  //window.location.href = "test.php?jsvar2=" + jsvar2;
 
   //test2
   // $.ajax({

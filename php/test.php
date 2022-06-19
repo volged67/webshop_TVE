@@ -2,8 +2,8 @@
  session_start();
 
  $neueMenge = $_GET["jsvar"]; // Übergabe von Warenkorb Anzahl
- $sPID = $_GET['pid'];
- echo $sPID;
+ //$sPID = $_GET['pid'];
+ //echo $sPID;
 
 //DB Settings
   include 'dbsettings.php';
