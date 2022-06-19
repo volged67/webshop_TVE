@@ -43,6 +43,8 @@ $result = $db->query($userwaren);
     include 'navbar.php';
     ?>
     <!-- Tabelle mit Artikeln im Warenkorb -->
+<form action="zuBestellungHinzufuegen.php" method = "post">
+
     <section class="h-100" style="background-color: #eee;">
   <div class="container h-100 py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -55,6 +57,8 @@ $result = $db->query($userwaren);
         <?php while($row = $result->fetch()):?>
           <div class="row">
           
+          
+
             <div class="col">
               <?php
                 //Artikel einfügen
@@ -100,7 +104,9 @@ $result = $db->query($userwaren);
 
               ?>
             </div>
-          
+
+        
+
         </div>
         <?php endwhile;?>
 
@@ -116,13 +122,15 @@ $result = $db->query($userwaren);
 
         <div class="card">
           <div class="card-body">
-            <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+            <button type="submit" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
           </div>
         </div>
 
       </div>
     </div>
   </div>
+
+        </form>
 </section>
 
 <!-- <script src="../node_modules/jquery/dist/jquery.js"></script> -->
