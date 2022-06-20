@@ -275,7 +275,17 @@ foreach($db->query($amount2) as $row)
 
           <hr class="my-4">
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="save-info">
+            <input id="datenschutz" name="datenschutz" type="checkbox" class="form-check-input" id="save-info" required>
+            
+
+          <?php 
+          /* if(!isset($_POST['datenschutz']))
+            {
+            echo'Gehen Sie <a href="checkout.php"> zurück</a> und akzeptieren Sie die AGB';
+            exit();
+            }*/
+            ?>
+
             <label class="form-check-label" for="save-info">Datenschutzerklärung bestätigen</label>
           </div>
           <br>
