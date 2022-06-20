@@ -8,6 +8,7 @@
     $sPreis="";
     $sMenge="";
     $sAuswahl="";
+    $sSumme="";
 
 //DB Settings
   include 'dbsettings.php';
@@ -29,19 +30,20 @@ foreach($conn->query($sql) as $row)
             $sTitel=$row['ptitel'];
             $sPreis=$row['ppreis'];
             $sMenge=$row['panzahl'];
+            $sSumme=$row['psumme'];
 
             $sqlbestellung= $conn->query($sql);
             //SQL Produkte der Bestellung hinzufügen
-            $sqlbestellung="INSERT INTO bestellung (userid,pid,preis,titel,menge,bestellnr)
-            VALUES(?,?,?,?,?,?)";
+            $sqlbestellung="INSERT INTO bestellung (userid,pid,preis,titel,menge,summe,bestellnr)
+            VALUES(?,?,?,?,?,?,?)";
             $stmt3=$conn->prepare($sqlbestellung);
-            $stmt3->execute([$sUserId,$sPID,$sPreis,$sTitel,$sMenge,$genbnr]);
+            $stmt3->execute([$sUserId,$sPID,$sPreis,$sTitel,$sMenge,$sSumme,$genbnr]);
 }
 
 //Beenden der DatenbankVerbindung
 $conn=null;
 
 //Weiterleitung 
-// header("Location: Artikelseite.php");
+header("Location: Checkout.php");
 
 ?>
