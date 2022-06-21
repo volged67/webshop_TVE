@@ -1,6 +1,7 @@
 <?php
 
 
+
 //Include required phpmailer files 
     require 'includes/PHPMailer.php';
     require 'includes/SMTP.php';
@@ -11,8 +12,8 @@
     use PHPMailer\PHPMailer\Exception;
 
 
-$mailBetreff="Registrierungsmail";
-$mailText="Hallo".$sVorname; 
+$mailBetreff="Passwort zurücksetzen!";
+$mailText="Hallo"; 
 
 $mailFrom="From: huqqah";
 
@@ -35,13 +36,23 @@ $mailFrom="From: huqqah";
 //set email subject
     $mail->Subject = "Ihr huqqah Passwort!";
 //set sender email
-   $mail->setFrom("volkan.gedik6798@gmail.com");
-//Enable HTML
+    $mail->setFrom("volkan.gedik6798@gmail.com");
+//Damit Umlaute funktionieren
+    $mail->CharSet ="UTF-8";
+    //Enable HTML
     $mail->isHTML(true);
 //LOGO
-    $mail->AddEmbeddedImage('../img/logo.jpg','logo.jpg');
-//email body
-    $mail->Body = "Hallo <b>$sFirstname $sLastname</b>, dein Passwort ist: <b>$genPassword</b>";
+    $mail->addEmbeddedImage('../img/logo.png','logo');
+//email body 
+    $mail->Body ="  <html>
+                        <body>
+                           <p><img src=\"cid:logo\"></p>
+                            <p>Dein Passwort kannst du über diesen Link zurücksetzen http://localhost/webshop_TVE/php/passwortNeu.php</p>
+                            <br/>
+                            <p>Ihr Huqqah Team</p>
+                        </body>
+                     </html>";
+    
 //Add recipient
     $mail->addAddress($sMail);
 //Finally send email

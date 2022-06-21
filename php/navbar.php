@@ -30,6 +30,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <!-- Wichtig für Fontawesome -->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
     <!-- Navigationsleiste unvollständig -->
@@ -87,9 +89,15 @@
             </button>
           </a>
         </li>
-        
       </ul>
     </div>
+<!--Artikelsuche-->
+
+        <form class="form-inline ms-2 my-lg-0" method="POST" action="Suche.php">
+          <input class="form-control ms-sm-2 " name="artikelsuche" type="input" placeholder="Suchen" aria-label="Search">
+          <button  style='font-size:24px' class="btn btn-outline-light text-center ms-2 my-sm-0 fas fa-search" type="submit"></button>
+        </form>
+
   </nav>
   
   <br>

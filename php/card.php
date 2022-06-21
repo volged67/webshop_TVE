@@ -14,7 +14,7 @@
               <div>
                 <button class="btn btn-link px-2"
                   onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
+                  <i class=""></i>
                 </button>
 
                 <input id="form1" min="1" name="anzahl" value="1" type="number"
@@ -22,7 +22,7 @@
 
                 <button class="btn btn-link px-2"
                   onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
+                  <i class=""></i>
                 </button>
                 <div>
                   <p>Verfügbare Menge:<?php echo $row['menge']?></p>

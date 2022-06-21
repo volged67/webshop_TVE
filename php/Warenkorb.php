@@ -43,7 +43,7 @@ $result = $db->query($userwaren);
     include 'navbar.php';
     ?>
     <!-- Tabelle mit Artikeln im Warenkorb -->
-<form action="zuBestellungHinzufuegen.php" method = "post">
+<!-- <form action="zuBestellungHinzufuegen.php" method = "post"> -->
 
     <section class="h-100" style="background-color: #eee;">
   <div class="container h-100 py-5">
@@ -120,17 +120,19 @@ $result = $db->query($userwaren);
         </div>
         <br>
 
+        <form action="zuBestellungHinzufuegen.php" method = "post">
         <div class="card">
           <div class="card-body">
             <button type="submit" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
           </div>
         </div>
+        </form>
 
       </div>
     </div>
   </div>
 
-        </form>
+        
 </section>
 
 <!-- <script src="../node_modules/jquery/dist/jquery.js"></script> -->
@@ -152,18 +154,6 @@ function testplus(event){
   window.location.href = "test.php?jsvar=" + jsvar;
   //window.location.href = "test.php?jsvar2=" + jsvar2;
 
-  //test2
-  // $.ajax({
-  //                   url: "test2.php",
-  //                   type: "POST",
-  //                   data: {wert: jsvar},
-  //                   success: function(data){
-  //                       console.log("worked", data);
-  //                   },
-  //                   error: function(data){
-  //                       console.error("error", data);
-  //                   }
-  //          });
 }
   
 

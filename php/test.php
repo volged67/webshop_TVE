@@ -13,17 +13,17 @@
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-if ($neueMenge>0) {
-    //Produktanzahl aktualisieren
-    $sqlwaren=$conn->prepare("UPDATE warenkorb SET panzahl=$neueMenge WHERE pid= ?");
-    $sqlwaren->execute([$sPID]);
-    //SQL Produkte Bestand verändern
+// if ($neueMenge>0) {
+//     //Produktanzahl aktualisieren
+//     $sqlwaren=$conn->prepare("UPDATE warenkorb SET panzahl=$neueMenge WHERE pid= ?");
+//     $sqlwaren->execute([$sPID]);
+//     //SQL Produkte Bestand verändern
     
-} 
-else 
-{
+// } 
+// else 
+// {
     
-}
+// }
 
 
 ?>

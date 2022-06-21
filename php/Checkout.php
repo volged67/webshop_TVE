@@ -1,8 +1,5 @@
 <?php
 session_start();
-
-  // error_reporting(-1);
-  // ini_set('display_errors','On');
   
 //DB Settings
 include 'dbsettings.php';
@@ -114,7 +111,7 @@ foreach($db->query($amount2) as $row)
               <h6 class="my-0">RABATTCODE</h6>
               <small><p></p></small>
             </div>
-            <span class="text-success">%</span>
+            <span class="text-success">hier muss was rein</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>SUMME €</span>
@@ -129,13 +126,19 @@ foreach($db->query($amount2) as $row)
           </div>
         </form>
       </div>
+
+
+
       <div class="col-md-7 col-lg-8">
+
+   <form method="post" action="bestellungAbschließen.php">   
+
         <h4 class="mb-3">Rechnungsadresse</h4>
         <form class="needs-validation" novalidate>
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">Vorname</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <input name="vorname" type="text" class="form-control" id="firstName" placeholder="" value="" required>
               <div class="invalid-feedback">
                 Bitte geben Sie Ihren Vornamen ein
               </div>
@@ -143,7 +146,7 @@ foreach($db->query($amount2) as $row)
 
             <div class="col-sm-6">
               <label for="lastName" class="form-label">Nachname</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <input name="nachname" type="text" class="form-control" id="lastName" placeholder="" value="" required>
               <div class="invalid-feedback">
                 Bitte geben Sie Ihren Nachnamen ein
               </div>
@@ -153,7 +156,7 @@ foreach($db->query($amount2) as $row)
               <label for="email" class="form-label">E-mail</label>
               <div class="input-group has-validation">
                 <span class="input-group-text">@</span>
-                <input type="email" class="form-control" id="email" placeholder="email" required>
+                <input name="email" type="email" class="form-control" id="email" placeholder="email" required>
               <div class="invalid-feedback">
                   Bitte E-Mail eingeben
                 </div>
@@ -170,7 +173,7 @@ foreach($db->query($amount2) as $row)
 
             <div class="col-12">
               <label for="address" class="form-label">Straße, Hausnummer</label>
-              <input type="text" class="form-control" id="address" placeholder="Musterstraße 12" required>
+              <input name="straße" type="text" class="form-control" id="address" placeholder="Musterstraße 12" required>
               <div class="invalid-feedback">
                 Bitte Straße und Hausnummer eingeben
               </div>
@@ -178,12 +181,12 @@ foreach($db->query($amount2) as $row)
 
             <div class="col-12">
               <label for="address2" class="form-label">Adressenzusatz <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Gebäude/Stock">
+              <input name="zusatz" type="text" class="form-control" id="address2" placeholder="Gebäude/Stock">
             </div>
 
             <div class="col-md-5">
               <label for="country" class="form-label">Land</label>
-              <select class="form-select" id="country" required>
+              <select name="land" class="form-select" id="country" required>
                 <option value="">Auswählen</option>
                 <option>Deutschland</option>
                 <option>Österreich</option>
@@ -196,7 +199,7 @@ foreach($db->query($amount2) as $row)
 
             <div class="col-md-4">
            <label for="Stadt" class="form-label">Ort</label>
-              <input type="text" class="form-control" id="ort" placeholder="" required>
+              <input name="ort" type="text" class="form-control" id="ort" placeholder="" required>
               <div class="invalid-feedback">
                -- Bitte Ort angeben
               </div>
@@ -204,17 +207,17 @@ foreach($db->query($amount2) as $row)
 
             <div class="col-md-3">
               <label for="zip" class="form-label">Postleitzahl</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required>
+              <input name="plz" type="text" class="form-control" id="zip" placeholder="" required>
               <div class="invalid-feedback">
                 Bitte PLZ eingebn
               </div>
             </div>
           </div>
           <br>
-          <div class="form-check">
+          <!-- <div class="form-check">
             <input type="checkbox" class="form-check-input" id="same-address">
             <label class="form-check-label" for="same-address">Liefer und Rechnungsadresse sind identisch</label>
-          </div>
+          </div> -->
 
           <hr class="my-4">
 
@@ -276,14 +279,17 @@ foreach($db->query($amount2) as $row)
           <hr class="my-4">
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info">Datenschutzerklärung bestätigen</label>
+            <label class="form-check-label" for="save-info" required>Datenschutzerklärung bestätigen</label>
           </div>
           <br>
           <button class="w-100 btn btn-primary btn-lg" type="submit">Bestellung bezahlen und bestätigen</button>
         </form>
       </div>
+     </form> 
     </div>
+
   </main>
+
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2017–2021 huqqah</p>
