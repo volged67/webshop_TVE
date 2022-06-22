@@ -91,7 +91,7 @@ $result = $db->query($userwaren);
                             </div>
                             <div class='col-md-3 col-lg-2 col-xl-2 offset-lg-1'>
                               <h5 class='mb-0'>Summe:<br>".sprintf("%01.2f", $row['psumme'])."</h5>
-                              <h5 class='mb-0'>Rabatt:<br>".sprintf("%01.2f", $row['psumme'])."</h5>
+                              <h5 class='mb-0'>Rabatt:<br>".$row['rabatt']." %</h5>
                             </div>
                             <div class='col-md-2 col-lg-2 col-xl-2'>
                             <a href='loeschenAusWarenkorb.php?wid=".$row['wid']." class='text-danger'><i class='btn-close'></i></a>
@@ -140,7 +140,7 @@ $result = $db->query($userwaren);
         <form action="zuBestellungHinzufuegen.php" method = "post">
         <div class="card">
           <div class="card-body">
-            <button type="submit" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+            <button type="submit" class="btn btn-warning btn-block btn-lg">Zur Bestellung</button>
           </div>
         </div>
         </form>

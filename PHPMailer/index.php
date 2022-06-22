@@ -13,7 +13,7 @@
 
 
 $mailBetreff="Registrierungsmail";
-$mailText="Hallo".$sVorname; 
+// $mailText="Hallo".$sVorname; 
 
 $mailFrom="From: huqqah";
 

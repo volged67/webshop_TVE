@@ -1,11 +1,7 @@
 <?php
 
 session_start();
-// Check ob man schon eingeloggt ist
-if($_SESSION['login']!=111)
-{
-    header("Location: login.php");
-}
+
 // Variablen vordefinieren als Platzhalter
 $sFirstname="";
 $sLastname="";
@@ -14,7 +10,7 @@ $sHousenumber="";
 $sPLZ="";
 $sCity="";
 $sMail="";
-$bFirstlogin=true;
+$bFirstlogin=false;
 //$iSessionuserId=$_SESSION['id'];
 //Formularwerte in Variablen speichern
 if(isset($_POST['firstname']))
@@ -42,25 +38,14 @@ if(isset($_POST['email']))
     $sMail=$_POST['email'];
 }
 
-if( empty($_POST['firstname']) OR empty($_POST['lastname']) OR empty($_POST['email']) OR empty($_POST['street']) OR empty($_POST['plz']) OR empty($_POST['city']) ) {
-    header("Location: registrieren.php");
-    echo "Nicht alle Felder ausgefüllt!";
-}
-else {
-    //Passwort generieren und hashen
+
+//Passwort generieren und hashen
 include "password.php";
 $genPassword=passGenerator(9);
-//$sPassword=password_hash($genPassword,CRYPT_SHA512);
-//$sPassword = hash('sha512', $genPassword);
-//$_SESSION['OldPassword']=$sPassword;
 $sPassword = hash('sha512',$genPassword);
 
 
 
-
-
-// PHP-Mailer
-include "../PHPMailer/index.php";
 
 try
 {
@@ -75,17 +60,17 @@ try
  $query=$conn->prepare("SELECT * FROM register_user WHERE email= ?");
  $query->execute([$sMail]);
  $result = $query->rowCount();
+
  if($result >0){
-     $error = "Email already exists";
-     //header("Location: registrieren.php");
-     echo  "Email already exists";
+     echo  "Email existiert bereits!";
  }
-  else 
-  {
+else {
     $sql = "INSERT INTO register_user (regid,firstname,lastname,street,plz,city,email,password,firstlogin) VALUES (?,?,?,?,?,?,?,?,?)";
      $stmt=$conn->prepare($sql);
      $stmt->execute([$iSessionuserId,$sFirstname,$sLastname,$sStreet,$sPLZ,$sCity,$sMail,$sPassword,$bFirstlogin]);
      header("Location: firstlogin.php");
+     // PHP-Mailer
+    include "../PHPMailer/index.php";
   }
   
 
@@ -99,7 +84,7 @@ catch(Exception $e)
     echo "Fehler";
 }
 
-}
+
 
 
 

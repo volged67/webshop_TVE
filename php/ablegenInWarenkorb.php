@@ -95,12 +95,20 @@ foreach($conn->query($query) as $row)
     }
     
 if ($sPMenge >= 8) {
+    //8% anwenden
     $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis*0.92 WHERE pid= ?");
+    $sqlwarenkorbsumme->execute([$sPID]);
+    //Rabatt hinzufügen in der Tabelle
+    $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET rabatt=8.0 WHERE pid= ?");
     $sqlwarenkorbsumme->execute([$sPID]);
 }
 
 if ($sPMenge >= 16) {
+    //16% anwenden
     $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis*0.84 WHERE pid= ?");
+    $sqlwarenkorbsumme->execute([$sPID]);
+    //Rabatt hinzufügen in der Tabelle
+    $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET rabatt=16.0 WHERE pid= ?");
     $sqlwarenkorbsumme->execute([$sPID]);
 }
 

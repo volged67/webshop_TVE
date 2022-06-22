@@ -52,11 +52,22 @@ try{
       if ($sPMenge >= 8) {
           $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis*0.92 WHERE pid= ?");
           $sqlwarenkorbsumme->execute([$sPID]);
+            //Rabatt hinzufügen in der Tabelle
+            $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET rabatt=8.0 WHERE pid= ?");
+            $sqlwarenkorbsumme->execute([$sPID]);
       }
        if ($sPMenge >= 16) {
           $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis*0.84 WHERE pid= ?");
           $sqlwarenkorbsumme->execute([$sPID]);
+              //Rabatt hinzufügen in der Tabelle
+            $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET rabatt=16.0 WHERE pid= ?");
+            $sqlwarenkorbsumme->execute([$sPID]);
       }
+      if ($sPMenge < 8) {
+          //Rabatt hinzufügen in der Tabelle
+          $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET rabatt=0.0 WHERE pid= ?");
+          $sqlwarenkorbsumme->execute([$sPID]);
+    }
 
     // Close connection
     $conn = null;
