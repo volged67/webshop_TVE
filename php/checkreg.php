@@ -37,6 +37,10 @@ if(isset($_POST['email']))
 {
     $sMail=$_POST['email'];
 }
+if(isset($_POST['geschlecht']))
+{
+    $sGeschlecht=$_POST['geschlecht'];
+}
 
 
 //Passwort generieren und hashen
@@ -65,9 +69,9 @@ try
      echo  "Email existiert bereits!";
  }
 else {
-    $sql = "INSERT INTO register_user (regid,firstname,lastname,street,plz,city,email,password,firstlogin) VALUES (?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO register_user (regid,firstname,lastname,street,plz,city,email,password,firstlogin,geschlecht) VALUES (?,?,?,?,?,?,?,?,?,?)";
      $stmt=$conn->prepare($sql);
-     $stmt->execute([$iSessionuserId,$sFirstname,$sLastname,$sStreet,$sPLZ,$sCity,$sMail,$sPassword,$bFirstlogin]);
+     $stmt->execute([$iSessionuserId,$sFirstname,$sLastname,$sStreet,$sPLZ,$sCity,$sMail,$sPassword,$bFirstlogin,$sGeschlecht]);
      header("Location: firstlogin.php");
      // PHP-Mailer
     include "../PHPMailer/index.php";

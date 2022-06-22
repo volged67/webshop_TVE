@@ -39,6 +39,7 @@
             $_SESSION['login']=111;
             $_SESSION['time']=time();
             $_SESSION['lastlogin']=$row['lastlogin'];
+            $_SESSION['geschlecht']=$row['geschlecht'];
             //$_SESSION['firstlogin']=$bFirstlogin;
 
             $bLoginSuccess=true;

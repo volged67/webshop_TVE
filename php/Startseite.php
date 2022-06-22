@@ -35,9 +35,9 @@ header("Location: Login.php");
 
 <!-- Begrüßung (noch zu bearbeiten) -->
 <h1>Herzlich Willkommen</h1>
-        <p>Schön, dass du hier bist <b><?php echo $_SESSION['firstname']." ".$_SESSION['lastname']; ?></b></p>
+        <p>Schön, dass Sie hier sind <b><?php echo $_SESSION['geschlecht']." ".$_SESSION['lastname']; ?></b></p>
 
-<p>Du warst das letzte mal am  <b>
+<p>Sie waren das letzte mal am  <b>
 <?php
 //DB Settings
 include 'dbsettings.php';

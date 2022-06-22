@@ -56,14 +56,15 @@ if(isset($_POST['email']))
             $sStreet=$row['street'];
             $sPLZ=$row['plz'];
             $sCity=$row['city'];
+            $sGeschlecht=$row['geschlecht'];
             $bFirstLoginSuccess=true;
         }
 
 //Gehashtes Passwort wird übergeben an die user Tabelle!
         $sHashPassword=hash('sha512',$sNewPassword);
-        $sql2 = "INSERT INTO user (firstname,lastname,street,plz,city,email,password) VALUES (?,?,?,?,?,?,?)";
+        $sql2 = "INSERT INTO user (firstname,lastname,street,plz,city,email,password,geschlecht) VALUES (?,?,?,?,?,?,?,?)";
         $stmt=$conn->prepare($sql2);
-        $stmt->execute([$sFirstname,$sLastname,$sStreet,$sPLZ,$sCity,$sMail,$sHashPassword]);
+        $stmt->execute([$sFirstname,$sLastname,$sStreet,$sPLZ,$sCity,$sMail,$sHashPassword,$sGeschlecht]);
 
 //Weiterleitung je nach erfolgreichem Success
         if($bFirstLoginSuccess=true)

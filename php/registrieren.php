@@ -29,6 +29,17 @@
     	                               
                                         </div>
                                         <div class="form-group">
+                                        
+                                                <label for="country" class="text-info">Geschlecht</label>
+                                                <select name="geschlecht" class="text-info" id="country" required>
+                                                    <option value="">Auswählen</option>
+                                                    <option>Herr</option>
+                                                    <option>Frau</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                Bitte Land auswählen
+                                                </div><br>
+                                                
                                             <label for="name" class="text-info">Vorname</label> <br>
                                             <input id="regVorname" type="text" name="firstname"  class="form-control" placeholder="Max" required><br>
                                         
