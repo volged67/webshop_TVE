@@ -90,6 +90,7 @@ $result = $db->query($userwaren);
                             </div>
                             <div class='col-md-3 col-lg-2 col-xl-2 offset-lg-1'>
                               <h5 class='mb-0'>Summe:<br>".sprintf("%01.2f", $row['psumme'])."</h5>
+                              <h5 class='mb-0'>Rabatt:<br>".sprintf("%01.2f", $row['psumme'])."</h5>
                             </div>
                             <div class='col-md-2 col-lg-2 col-xl-2'>
                             <a href='loeschenAusWarenkorb.php?wid=".$row['wid']." class='text-danger'><i class='btn-close'></i></a>
@@ -115,7 +116,22 @@ $result = $db->query($userwaren);
             <label for="password" class="text-info">Gesamtsumme:</label><br>
             <label for="gesamtsumme" class="text-info"><?php echo 
             sprintf("%01.2f", $sSumme);
-            ?> </label><br>
+            ?> 
+            </label><br>
+            <!-- <label for="Mengenrabatt" class="text-info">Mengenrabatt: 
+            <?php 
+              // if (($row['panzahl'])>=8 && ($row['panzahl'])<16) {
+              //   echo "8%";
+              // }
+              // if (($row['panzahl'])>16) {
+              //   echo "16%";
+              // }
+              // else {
+              //   echo "0%";
+              // }
+            ?>
+            </label> -->
+            <br>
           </div>
         </div>
         <br>

@@ -31,13 +31,14 @@ foreach($conn->query($sql) as $row)
             $sPreis=$row['ppreis'];
             $sMenge=$row['panzahl'];
             $sSumme=$row['psumme'];
+            $sBildlink=$row['pbildlink'];
 
             $sqlbestellung= $conn->query($sql);
             //SQL Produkte der Bestellung hinzufügen
-            $sqlbestellung="INSERT INTO bestellung (userid,pid,preis,titel,menge,summe,bestellnr)
-            VALUES(?,?,?,?,?,?,?)";
+            $sqlbestellung="INSERT INTO bestellung (userid,pid,preis,titel,menge,summe,bestellnr,bildlink)
+            VALUES(?,?,?,?,?,?,?,?)";
             $stmt3=$conn->prepare($sqlbestellung);
-            $stmt3->execute([$sUserId,$sPID,$sPreis,$sTitel,$sMenge,$sSumme,$genbnr]);
+            $stmt3->execute([$sUserId,$sPID,$sPreis,$sTitel,$sMenge,$sSumme,$genbnr,$sBildlink]);
 }
 
 //Beenden der DatenbankVerbindung

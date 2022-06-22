@@ -51,7 +51,10 @@
      $sPlz=($_POST['plz']);
  }
 
-//DB Settings
+ //AGB prüfen
+ if(isset($_POST['AGB']))
+ {
+     //DB Settings
 include 'dbsettings.php';
 
 //Verbindung zur Datenbank
@@ -71,13 +74,14 @@ $sqlbestellung= $conn->query($produkte);
             $sMenge=$row['menge'];
             $sSumme=$row['summe'];
             $sBestellNr=$row['bestellnr'];
+            $sBildlink=$row['bildlink'];
 
             
             //SQL Produkte der Bestellung hinzufügen
-            $sqlbestellung="INSERT INTO bestellt (vorname,nachname,straße,email,zusatz,land,ort,plz,userid,pid,preis,titel,menge,summe,bestellnr)
-            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $sqlbestellung="INSERT INTO bestellt (vorname,nachname,straße,email,zusatz,land,ort,plz,userid,pid,preis,titel,menge,summe,bestellnr,bildlink)
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $stmt3=$conn->prepare($sqlbestellung);
-            $stmt3->execute([$sVorname,$sNachname,$sStraße,$sEmail,$sZusatz,$sLand,$sOrt,$sPlz,$sUserId,$sPid,$sPreis,$sTitel,$sMenge,$sSumme,$sBestellNr]);
+            $stmt3->execute([$sVorname,$sNachname,$sStraße,$sEmail,$sZusatz,$sLand,$sOrt,$sPlz,$sUserId,$sPid,$sPreis,$sTitel,$sMenge,$sSumme,$sBestellNr,$sBildlink]);
 
             //Warenkorb leeren
             $conn->prepare("DELETE FROM warenkorb WHERE userid=?")->execute([$sUserId]);
@@ -100,11 +104,16 @@ $sqlbestellung= $conn->query($produkte);
 // PHP-Mailer
 include "../PHPMailer/BusinessMail.php";
 
-
 //Beenden der DatenbankVerbindung
 $conn=null;
 
 // //Weiterleitung zur Artikelübersicht
 header("Location: danke.php");
+ }
+
+
+else {
+   // header("Location: Checkout.php");
+}
 
 ?>

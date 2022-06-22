@@ -111,7 +111,26 @@ foreach($db->query($amount2) as $row)
               <h6 class="my-0">RABATTCODE</h6>
               <small><p></p></small>
             </div>
-            <span class="text-success">hier muss was rein</span>
+            <span class="text-success">
+                <?php 
+                $rabatte ="SELECT rabatt FROM bestellung WHERE userid=$userid";
+                foreach($db->query($rabatte) as $row)
+                {
+                    $sRabatt=$row['rabatt'];
+                }
+                if (empty($sRabatt)) {
+                    echo"Kein Rabatt angewendet";
+                } else {
+                    for ($x = 0; $x < 1; $x++  )
+                {
+                
+                 echo (1-$row['rabatt'])*100;
+                }
+                }
+                
+                
+            ?>%
+            </span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>SUMME €</span>
@@ -221,6 +240,24 @@ foreach($db->query($amount2) as $row)
 
           <hr class="my-4">
 
+          <h4 class="mb-3">Versandart</h4>
+
+          <!-- Versandart auswählen -->
+          <!-- <div class="col-4">
+            <form action="versand.php" method="POST">
+            <input class="" name="dpd" type="radio" id="dpd" name="versandarten" value="24" required/>
+            <label for="dpd"><br><img src="../img/DPD.jpg" class=img-thumbnail height=100 width=100>24€</label><br>
+        
+            <input type="radio" name="dhl" id="dhl" name="versandarten" value="24" required/>
+            <label for="dhl"><br><img src="../img/DHL.jpg" class=img-thumbnail height=100 width=100>24€</label><br>
+
+            <input type="radio" name="dhlexpress" id="dhlExpress" name="versandarten" value="33" required/>
+            <label for="dhlExpress"><br><img src="../img/DHLE.jpg" class=img-thumbnail height=100 width=100>33€</label><br>
+            </form> 
+          </div> -->
+
+          <hr class="my-4">
+
           <h4 class="mb-3">Zahlungart</h4>
 
           <div class="my-3">
@@ -234,6 +271,9 @@ foreach($db->query($amount2) as $row)
             </div>
           </div>
     
+
+          
+
         <?php 
          //if($credit)
         
@@ -278,8 +318,8 @@ foreach($db->query($amount2) as $row)
 
           <hr class="my-4">
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info" required>Datenschutzerklärung bestätigen</label>
+            <input name="AGB" type="checkbox" class="form-check-input" id="save-info">
+            <label  class="form-check-label" for="save-info" required>Datenschutzerklärung bestätigen</label>
           </div>
           <br>
           <button class="w-100 btn btn-primary btn-lg" type="submit">Bestellung bezahlen und bestätigen</button>

@@ -54,8 +54,6 @@ if ($sPMenge>0 AND $result>0 AND $sAnzahl<=$sPMenge) {
         //SQL Warenkorb Summe updaten wenn das Produkt schon im Warenkorb ist
         $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis WHERE pid= ?");
         $sqlwarenkorbsumme->execute([$sPID]);
-        //Beenden der DatenbankVerbindung
-        $conn=null;
 
         //Weiterleitung zur Artikelübersicht
         header("Location: Artikelseite.php");
@@ -78,8 +76,11 @@ if($sPMenge>0 AND $sAnzahl<=$sPMenge)
         $sqlwarenkorbsumme2=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis WHERE pid= ?");
         $sqlwarenkorbsumme2->execute([$sPID]);
 
-        //Beenden der DatenbankVerbindung
-        $conn=null;
+        //Rabatt anwenden bei Menge von 8+
+        if ($sPMenge>=8 && $sPMenge<16) {
+            $sqlwarenkorbpreis=$conn->prepare("UPDATE warenkorb SET psumme=psumme*(92/100) WHERE pid= ?");
+            $sqlwarenkorbpreis->execute([$sPID]);
+        }
 
         //Weiterleitung zur Artikelübersicht
         header("Location: Artikelseite.php");
@@ -89,6 +90,24 @@ else {
 
     //echo "Das Produkt ist leider nicht mehr verfügbar";
     header("Location: produktNichtVerfuegbar.php");
+}
+
+//Rabatt wenn 8 desselben Artikels gekauft werden 8%, bei 16 artikel 16%
+$query=("SELECT panzahl FROM warenkorb WHERE pid= $sPID");
+
+foreach($conn->query($query) as $row)
+    {
+        $sPMenge=$row['panzahl']; 
+    }
+    
+if ($sPMenge >= 8) {
+    $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis*0.92 WHERE pid= ?");
+    $sqlwarenkorbsumme->execute([$sPID]);
+}
+
+if ($sPMenge >= 16) {
+    $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis*0.84 WHERE pid= ?");
+    $sqlwarenkorbsumme->execute([$sPID]);
 }
 
 

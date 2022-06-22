@@ -22,15 +22,14 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="Artikelseite.php" method="post">
+                        <form id="login-form" class="form" action="bestellungAnsehen.php" method="post">
                             <h3 class="text-center text-info">Vielen Dank für deinen Einkauf bei Huqqah in Kürze bekommst du eine Bestätigung per Mail.</h3>
                             
                             <br>
                             <!--Gleiche Bestellung nochmal Button-->
-
-                            <h5 class="text-center text-info">Willst du die gleiche Bestellung nochmal durchführen dann klick auf diesen Button!</h5>
+                            <h5 class="text-center text-info">Willst du deine Bestellung ansehen?</h5>
                             <div class="text-center text-info">
-                                <input type="submit" value="Nochmal bestellen" id="login" class="btn btn-primary">
+                                <input type="submit" value="Bestellung ansehen" id="login" class="btn btn-primary">
                             </div>    
 
                             <br>

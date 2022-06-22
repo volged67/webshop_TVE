@@ -1,5 +1,26 @@
 <?php
 
+//DB Settings
+include 'dbsettings.php';
+
+//Verbindung zur Datenbank
+$conn = new PDO($dsn,$username,$password);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+
+$userid=$_SESSION['id'];
+$userwaren ="SELECT * FROM bestellt WHERE userid=$userid";
+
+$result = $conn->query($userwaren);
+
+// foreach($conn->query($userwaren) as $row)
+//         {
+//             $sPTitel=$row['titel'];
+//             $sPPreis=$row['preis'];
+//             $sPMenge=$row['menge'];
+//         }
+
 
 
 //Include required phpmailer files 
@@ -34,27 +55,49 @@ $mailFrom="From: huqqah";
 //set gmail password
     $mail->Password = "hhdlvffbtljlaprg";
 //set email subject
-    $mail->Subject = "Ihr huqqah Passwort!";
+    $mail->Subject = "Ihre huqqah Bestellung";
 //set sender email
     $mail->setFrom("volkan.gedik6798@gmail.com");
 //Damit Umlaute funktionieren
     $mail->CharSet ="UTF-8";
-    //Enable HTML
+//Enable HTML
     $mail->isHTML(true);
 //LOGO
     $mail->addEmbeddedImage('../img/logo.png','logo');
-//email body 
-    $mail->Body ="  <html>
+//email body
+$bodystring=""; 
+    $bodystring ="  <html>
                         <body>
                            <p><img src=\"cid:logo\"></p>
-                            <p>Dein Passwort kannst du über diesen Link zurücksetzen http://localhost/webshop_TVE/php/passwortNeu.php</p>
+                            <p>Vielen Dank für deine Bestellung!</p>
                             <br/>
+                            <p>
+                            <h3>Deine Bestellung:</h3>
+  
+                            ";
+                            while($row = $result->fetch())
+                            {
+                                $bodystring=$bodystring.
+                                "<li>
+                                <div>
+                                <p>".$row['titel']."</p>
+                                    <small><p></p></small>
+                                </div>
+                                <span>".$row['preis']."€</span>
+                                </li>";
+                            }
+                                
+                            $bodystring=$bodystring." 
+                            <hr>
+                            </p>
+                            <br>
                             <p>Ihr Huqqah Team</p>
                         </body>
                      </html>";
+                     $mail->Body = $bodystring;
     
 //Add recipient
-    $mail->addAddress($sMail);
+    $mail->addAddress($sEmail);
 //Finally send email
    
     if ($mail->Send() ) {
