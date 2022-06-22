@@ -111,7 +111,7 @@ $result = $db->query($userwaren);
         </div>
         <br>
 
-        <form action="zuBestellungHinzufuegen.php" method = "post">
+        <form action="bestellungWiederholen.php" method = "post">
         <div class="card">
           <div class="card-body">
             <button type="submit" class="btn btn-warning btn-block btn-lg">Nochmal bestellen</button>

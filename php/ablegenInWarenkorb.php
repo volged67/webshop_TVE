@@ -48,9 +48,6 @@ if ($sPMenge>0 AND $result>0 AND $sAnzahl<=$sPMenge) {
         //Produktanzahl aktualisieren
         $sqlwarenkorb3=$conn->prepare("UPDATE warenkorb SET panzahl=panzahl+$sAnzahl WHERE pid= ?");
         $sqlwarenkorb3->execute([$sPID]);
-        //SQL Produkte Bestand verändern
-        $sqlprodukte=$conn->prepare("UPDATE produkte SET menge=menge-$sAnzahl WHERE id= ?");
-        $sqlprodukte->execute([$sPID]);
         //SQL Warenkorb Summe updaten wenn das Produkt schon im Warenkorb ist
         $sqlwarenkorbsumme=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis WHERE pid= ?");
         $sqlwarenkorbsumme->execute([$sPID]);
@@ -69,9 +66,6 @@ if($sPMenge>0 AND $sAnzahl<=$sPMenge)
         //SQL Warenkorb Anzahl bearbeiten
          $sqlwarenkorb2=$conn->prepare("UPDATE warenkorb SET panzahl=panzahl+$sAnzahl WHERE pid= ?");
          $sqlwarenkorb2->execute([$sPID]);
-        //SQL Menge im Bestand verändern
-        $sqlprodukte2=$conn->prepare("UPDATE produkte SET menge=menge-$sAnzahl WHERE id= ?");
-        $sqlprodukte2->execute([$sPID]);
         //SQL Warenkorb Summe updaten beim ersten einsetzen des Produktes
         $sqlwarenkorbsumme2=$conn->prepare("UPDATE warenkorb SET psumme=panzahl*ppreis WHERE pid= ?");
         $sqlwarenkorbsumme2->execute([$sPID]);

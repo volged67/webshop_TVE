@@ -80,15 +80,23 @@ $bodystring="";
                                 $bodystring=$bodystring.
                                 "<li>
                                 <div>
-                                <p>".$row['titel']."</p>
+                                <p>Titel: ".$row['titel']."</p>
+                                <p>Menge: ".$row['menge']."</p>
+                                <p>Preis: ".$row['preis']."</p>
+                                <p>Bestellnr: ".$row['bestellnr']."</p>
                                     <small><p></p></small>
                                 </div>
-                                <span>".$row['preis']."€</span>
-                                </li>";
+                                <span>Summe: ".$row['summe']."€</span>
+                                </li>
+                                <hr>
+                                ";
                             }
+
+                            
+                            
                                 
                             $bodystring=$bodystring." 
-                            <hr>
+                            <p>Gesamtsumme: ".$gesamt."</p>
                             </p>
                             <br>
                             <p>Ihr Huqqah Team</p>

@@ -4,8 +4,34 @@ session_start();
 // Check ob man schon eingeloggt ist
 if($_SESSION['login']!=111)
 {
-header("Location: Login.php");
+header("Location: login.php");
 }
+
+// Suche der Artikel
+if (isset($_POST['artikelsuche']))
+{
+    $sArtikel=$_POST['artikelsuche'];
+    
+}
+
+//DB Settings
+include 'dbsettings.php';
+
+//Verbindung zur Datenbank
+$conn = new PDO($dsn,$username,$password);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$wasserpfeife ="SELECT * FROM produkte WHERE produktart='Wasserpfeife' AND titel LIKE '%$sArtikel%'";
+
+$result = $conn->query($wasserpfeife);
+
+$phunnel= "SELECT * FROM produkte WHERE produktart='Phunnel' AND titel LIKE '%$sArtikel%'";
+
+$result2 = $conn->query($phunnel);
+
+$smokebox= "SELECT * FROM produkte WHERE produktart='Smokebox' AND titel LIKE '%$sArtikel%'";
+
+$result3 = $conn->query($smokebox);
 
 ?>
 
@@ -19,7 +45,7 @@ header("Location: Login.php");
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-  <title>Search</title>
+  <title>Suche</title>
 </head>
 
 
@@ -29,67 +55,56 @@ header("Location: Login.php");
 
     ?>
 
-<?php
-// Suche der Artikel
-if (isset($_POST['artikelsuche']))
-{
-    $sArtikel=$_POST['artikelsuche'];
-    
-}
-try
-{  
-    //DB Settings
-    include 'dbsettings.php';
 
-    //Verbindung zur Datenbank
-    $conn = new PDO($dsn,$username,$password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+<!-- Tabelle mit Grid -->
+      <hr>
   
-    
-    //SQL
-    $sqlSucheArtikel = ("SELECT * FROM produkte WHERE titel LIKE '%$sArtikel%'");
-    $abfrage = $conn->prepare($sqlSucheArtikel);
-    $abfrage->execute();
-    $ergebnis = $abfrage->fetchAll();
-    
-    foreach($ergebnis as $zeile){
-      
-
-
-
-      echo "<tr>";
- 
-      echo "<td> Productname: ".$zeile["titel"]." <br><img src='../img/".$zeile['bildlink']."' class=img-thumbnail height=100 width=100></td>";
-      echo "<td><br>Price: ".$zeile["preis"]."€<br>Quantity: </td>";
-      echo "<td>".$zeile["menge"]."</td>";
-      echo "<td>";
-      echo"<br>
-      <div class=text-center>
-      
-      <form class=text-center method=POST action=ablegenInWarenkorb.php?pid=" .$zeile["id"]." role=form>
-                                 
-      <input type=number min=1 class=form-control name=quantity placeholder=amount value=1 style=width: 100px>
-      <button class=btn type=submit> Add to Card <i class='fas fa-shopping-cart'></i></button>
-
-      </form>
+      <h3>Wasserpfeifen</h3>
+  
+      <hr>
+      <div class="row">
+        <?php while($row = $result->fetch()):?>
+          <div class="col">
+            <?php
+              include 'card.php';
+            ?>
+          </div>
+        <?php endwhile;?>
       </div>
-    </td>";
+      <hr>
+  
+      <h3>Phunnel</h3>
+  
+      <hr>
+      <div class="row">
+        <?php while($row = $result2->fetch()):?>
+          <div class="col">
+            <?php
+              include 'card.php';
+            ?>
+          </div>
+        <?php endwhile;?>
+      </div>
+      <hr>
+  
+      <h3>Smokeboxen</h3>
+  
+      <hr>
+      <div class="row">
+        <?php while($row = $result3->fetch()):?>
+          <div class="col">
+            <?php
+              include 'card.php';
+            ?>
+          </div>
+        <?php endwhile;?>
+      </div>
+    
+    
 
-    }
     
-    $conn = null;
-    
-}
-    
-catch(PDOException $e)
-{
-    $handle = fopen ("error_login.txt", "w");
-    fwrite ($handle, $e->getMessage());
-    fclose ($handle);
-}
-    
-?>
+
 
 
   <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

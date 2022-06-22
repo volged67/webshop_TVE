@@ -89,6 +89,10 @@ $sqlbestellung= $conn->query($produkte);
             //Bestellung Datenbank leeren
             $conn->prepare("DELETE FROM bestellung WHERE userid=?")->execute([$sUserId]);
 
+            //SQL Menge im Bestand verändern
+            $sqlprodukte2=$conn->prepare("UPDATE produkte SET menge=menge-$sMenge WHERE id= ?");
+            $sqlprodukte2->execute([$sPid]);
+
             // $bOrderSuccess=true;
 }
 

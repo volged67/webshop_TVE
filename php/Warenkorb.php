@@ -81,9 +81,10 @@ $result = $db->query($userwaren);
 
                             <div class='col-md-3 col-lg-3 col-xl-2 d-flex'>
                             <button onClick='testminus(this)'>-</button>
-
+                              <form action='updateWarenkorb.php?pid=".$row['pid']."' method='post'>
                               <input id='form1' min='0' name='quantity' value='".$row['panzahl']."' type='number'
                                 class='form-control form-control-sm' />
+                                </form>
 
                               
                               <button onClick='testplus(this)'>+</button>
@@ -153,7 +154,7 @@ $result = $db->query($userwaren);
 
 <!-- <script src="../node_modules/jquery/dist/jquery.js"></script> -->
 
-<script>
+<!-- <script>
 function testplus(event){
   console.log("+");
   console.dir(event);
@@ -182,7 +183,31 @@ function testminus(event){
   inputartikelx.value = (Number(inputartikelx.value) -1);
   console.log(inputartikelx.value);
 }
-</script>
+
+fetch('https://jsonplaceholder.typicode.com/posts',{
+  method:'POST',
+  headers:{
+    'content-type':'application/json;charset=UTF-8'
+  },
+  body:JSON.stringify({
+    title:'fetch',
+    body:'JS-fetchdemo',
+    Pid: 1
+  })
+})
+.then(response => {
+  if(response.ok){
+    console.log("Erfolgreich!");
+    return response.json();
+  }
+  else{
+    throw new Error("Fehler bei POST");
+  }
+})
+.then(data => console.log(data))
+.catch((error) => console.log(error))
+
+</script> -->
 
 </body>
 </html>
