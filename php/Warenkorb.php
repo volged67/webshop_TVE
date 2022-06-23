@@ -80,14 +80,14 @@ $result = $db->query($userwaren);
                             
 
                             <div class='col-md-3 col-lg-3 col-xl-2 d-flex'>
-                            <button onClick='testminus(this)'>-</button>
+                            
                               <form action='updateWarenkorb.php?pid=".$row['pid']."' method='post'>
                               <input id='form1' min='0' name='quantity' value='".$row['panzahl']."' type='number'
                                 class='form-control form-control-sm' />
                                 </form>
 
                               
-                              <button onClick='testplus(this)'>+</button>
+                              
                             </div>
                             <div class='col-md-3 col-lg-2 col-xl-2 offset-lg-1'>
                               <h5 class='mb-0'>Summe:<br>".sprintf("%01.2f", $row['psumme'])."</h5>

@@ -1,24 +1,33 @@
 <?php
 $sPID=$_GET["pid"];
 
-// if(isset($_POST['quantity'])){
-//     $sNeueMenge($_POST['quantity']);
-// }
-$sAnzahl="";
-if(isset($_POST['quantity']))
-    {
-        $sAnzahl=($_POST['quantity']);
-    }
-
-try{
-          //DB Settings
+//DB Settings
           include 'dbsettings.php';
 
           //Verbindung zur Datenbank
           $conn = new PDO($dsn,$username,$password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      // Falls artikelmenge auf unter 1 gesetzt wird entferne artikel von warenkorb ansonsten update warenkorb
+//Daten der Produkte aus der Datenbank holen
+$pinfo ="SELECT * FROM produkte WHERE id=$sPID";
+
+foreach($conn->query($pinfo) as $row)
+        {
+            $sPMenge=$row['menge'];
+        }
+
+
+
+$sAnzahl="";
+if(isset($_POST['quantity']))
+    {
+        $sAnzahl=($_POST['quantity']);
+    }
+
+if ($sAnzahl>$sPMenge) {
+    header("Location: produktNichtVerfuegbar.php");
+} else {
+     // Falls artikelmenge auf unter 1 gesetzt wird entferne artikel von warenkorb ansonsten update warenkorb
       if($_POST['quantity']<1){
         $sqlEntferneArtikel= "DELETE FROM warenkorb WHERE pid=$sPID";              
         $abfrage = $conn->prepare($sqlEntferneArtikel);
@@ -73,10 +82,11 @@ try{
     $conn = null;
     
     
-}catch(PDOException $e){
-    echo $e;
-}
 
 header("Location: Warenkorb.php");
+}
+
+
+     
 
 ?>
