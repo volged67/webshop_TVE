@@ -12,6 +12,11 @@
 </head>
 
 
+        <script type="text/javascript">    
+        document.cookie = 'window_width='+screen.width+'; expires=Fri, 3 Aug 2901 20:47:11 UTC; path=/';    
+        document.cookie = 'window_height='+screen.height+'; expires=Fri, 3 Aug 2901 20:47:11 UTC; path=/'; 
+        </script>
+
 
 
 

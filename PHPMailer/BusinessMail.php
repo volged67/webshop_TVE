@@ -82,11 +82,11 @@ $bodystring="";
                                 <div>
                                 <p>Titel: ".$row['titel']."</p>
                                 <p>Menge: ".$row['menge']."</p>
-                                <p>Preis: ".$row['preis']."</p>
+                                <p>Preis: ".sprintf("%01.2f", $row['preis'])."</p>
                                 <p>Bestellnr: ".$row['bestellnr']."</p>
                                     <small><p></p></small>
                                 </div>
-                                <span>Summe: ".$row['summe']."€</span>
+                                <span>Summe: ".sprintf("%01.2f", $row['summe'])."€</span>
                                 </li>
                                 <hr>
                                 ";

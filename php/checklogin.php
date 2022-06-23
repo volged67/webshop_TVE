@@ -1,6 +1,9 @@
 <?php
  session_start();
 
+ $sWidth = $_COOKIE['window_width'];
+ $sHeight = $_COOKIE['window_height'];
+
     $sUsername="";
     $sPassword="";
     $bLoginSuccess=false;
@@ -13,6 +16,8 @@
     {
         $sPassword=htmlspecialchars($_POST['password']);
     }
+
+
 
     if ($sUsername!=="" && $sPassword!=="")
     {
@@ -57,7 +62,7 @@
             if($result >0){
                 $sqlUpdateUserData ="UPDATE userdata SET bildschirm=?, betriebssystem=?, email=?   WHERE email=?";
                 $stmt=$conn->prepare($sqlUpdateUserData);
-                $stmt->execute(["",php_uname(),$sUsername,$sUsername]);
+                $stmt->execute([$sWidth."x".$sHeight,$_SERVER['HTTP_USER_AGENT'],$sUsername,$sUsername]);
 
                 //Wenn der User eingelogt wird wird logedin auf 1 gesetzt.
                 if($bLoginSuccess)
@@ -67,13 +72,17 @@
                     $stmt2->execute([$sUsername]);
                 }
             }
+
+
+
+
             // falls kein eintrag in userdata für die emai drinne war wird diese neu erstellt in userdata
             else {
                 $userdaten = "INSERT INTO userdata (bildschirm,betriebssystem,email)
                 VALUES(?,?,?)";
                 $stmt=$conn->prepare($userdaten);
-                $stmt->execute(["",
-                php_uname(),$sUsername]);
+                $stmt->execute([$sWidth."x".$sHeight,
+                $_SERVER['HTTP_USER_AGENT'],$sUsername]);
 
                 //Wenn der User eingelogt wird wird logedin auf 1 gesetzt.
                 if($bLoginSuccess)
