@@ -318,23 +318,10 @@ foreach($db->query($amount2) as $row)
 
           <hr class="my-4">
           <div class="form-check">
-<<<<<<< HEAD
+
             <input name="AGB" type="checkbox" class="form-check-input" id="save-info">
             <label  class="form-check-label" for="save-info" required>Datenschutzerklärung bestätigen</label>
-=======
-            <input id="datenschutz" name="datenschutz" type="checkbox" class="form-check-input" id="save-info" required>
-            
 
-          <?php 
-          /* if(!isset($_POST['datenschutz']))
-            {
-            echo'Gehen Sie <a href="checkout.php"> zurück</a> und akzeptieren Sie die AGB';
-            exit();
-            }*/
-            ?>
-
-            <label class="form-check-label" for="save-info">Datenschutzerklärung bestätigen</label>
->>>>>>> 1649c624cfcba5480df4f190826de8f55123873a
           </div>
           <br>
           <button class="w-100 btn btn-primary btn-lg" type="submit">Bestellung bezahlen und bestätigen</button>
