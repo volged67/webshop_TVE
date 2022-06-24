@@ -13,10 +13,7 @@
 
 
 
-<?php 
-// Navigationsleiste
-    include 'navbar.php';
-?>
+
 
 <body>
     <div id="login">
